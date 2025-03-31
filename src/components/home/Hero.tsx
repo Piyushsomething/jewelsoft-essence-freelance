@@ -8,7 +8,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://source.unsplash.com/random/1920x1080/?silver,jewelry,luxury"
+          src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
           alt="Luxury Jewelry"
           className="w-full h-full object-cover"
         />

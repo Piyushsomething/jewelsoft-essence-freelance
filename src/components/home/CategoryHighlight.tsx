@@ -1,29 +1,28 @@
-
 import { Link } from "react-router-dom";
 
 const categories = [
   {
     id: "rings",
     name: "Rings",
-    image: "https://source.unsplash.com/random/600x800/?silver,ring",
+    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     description: "Exquisite rings for every occasion",
   },
   {
     id: "necklaces",
     name: "Necklaces",
-    image: "https://source.unsplash.com/random/600x800/?silver,necklace",
+    image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     description: "Stunning necklaces that make a statement",
   },
   {
     id: "earrings",
     name: "Earrings",
-    image: "https://source.unsplash.com/random/600x800/?silver,earring",
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     description: "Beautiful earrings for everyday elegance",
   },
   {
     id: "bracelets",
     name: "Bracelets",
-    image: "https://source.unsplash.com/random/600x800/?silver,bracelet",
+    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     description: "Handcrafted bracelets that captivate",
   },
 ];
@@ -52,17 +51,12 @@ const CategoryHighlight = () => {
                 <img
                   src={category.image}
                   alt={category.name}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="font-playfair text-2xl font-bold mb-2">{category.name}</h3>
-                  <p className="text-white/80 mb-4">{category.description}</p>
-                  <span className="inline-block text-gold font-medium group-hover:underline transition-all">
-                    Explore Collection
-                  </span>
-                </div>
+              </div>
+              <div className="mt-3 text-center">
+                <h3 className="font-semibold text-lg">{category.name}</h3>
+                <p className="text-muted-foreground">{category.description}</p>
               </div>
             </Link>
           ))}

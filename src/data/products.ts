@@ -46,19 +46,19 @@ const getImageUrl = (id: number, category: string) => {
 
 // Create placeholder image URLs for different product types
 const ringImages = Array.from({ length: 12 }, (_, i) => 
-  `https://source.unsplash.com/random/300x300/?silver,ring&sig=${i}`
+  `https://images.unsplash.com/photo-1609587312208-cea744558a14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2lsdmVyJTIwcmluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60`
 );
 
 const necklaceImages = Array.from({ length: 12 }, (_, i) => 
-  `https://source.unsplash.com/random/300x300/?silver,necklace&sig=${i+20}`
+  `https://images.unsplash.com/photo-1526355430414-a67999cb98e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNpbHZlciUyMG5lY2tsYWNlfGVufDB8fDB8fHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60`
 );
 
 const earringImages = Array.from({ length: 12 }, (_, i) => 
-  `https://source.unsplash.com/random/300x300/?silver,earring&sig=${i+40}`
+  `https://images.unsplash.com/photo-1619259942293-f8664710498f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNpbHZlciUyMGVhcnJpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60`
 );
 
 const braceletImages = Array.from({ length: 12 }, (_, i) => 
-  `https://source.unsplash.com/random/300x300/?silver,bracelet&sig=${i+60}`
+  `https://images.unsplash.com/photo-1635349052244-2c9145c5ef84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNpbHZlciUyMGJyYWNlbGV0fGVufDB8fDB8fHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60`
 );
 
 const ankletImages = Array.from({ length: 12 }, (_, i) => 
