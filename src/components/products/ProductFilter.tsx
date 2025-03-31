@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ import {
 import { ProductCategory, ProductFilter as FilterType } from "@/types/product";
 import { formatPrice } from "@/utils/format";
 import { getProductCategories, getMaterials, getPriceRange } from "@/data/products";
+import debounce from "lodash.debounce";
 
 interface ProductFilterProps {
   onFilterChange: (filters: FilterType) => void;
@@ -44,6 +45,18 @@ const ProductFilter = ({
     categories: initialFilters.categories || [],
   });
 
+  const [searchInput, setSearchInput] = useState(filters.searchQuery || "");
+
+  const debouncedSearchUpdate = useCallback(
+    debounce((value: string) => {
+      submitFilterChanges({
+        ...filters,
+        searchQuery: value
+      });
+    }, 300),
+    [filters]
+  );
+
   // Add this useEffect to sync with parent state changes
   useEffect(() => {
     setFilters({
@@ -57,24 +70,20 @@ const ProductFilter = ({
     });
   }, [initialFilters, minMaxPrice]);
 
-  useEffect(() => {
-    onFilterChange(filters);
-  }, [filters, onFilterChange]);
+  const submitFilterChanges = (newFilters: FilterType) => {
+    setFilters(newFilters);
+    onFilterChange(newFilters);
+  };
 
   const handleCategoryToggle = (category: string, checked: boolean) => {
-    setFilters((prev) => {
-      // If "all" is selected, clear other selections
-      if (category === "all" && checked) {
-        return {
-          ...prev,
-          category: "all",
-          categories: [],
-        };
-      }
-      
-      // If a specific category is selected, update the categories array
-      const currentCategories = [...(prev.categories || [])];
-      
+    const newFilters = { ...filters };
+
+    if (category === "all" && checked) {
+      newFilters.category = "all";
+      newFilters.categories = [];
+    } else {
+      const currentCategories = [...(newFilters.categories || [])];
+
       if (checked) {
         if (!currentCategories.includes(category as ProductCategory)) {
           currentCategories.push(category as ProductCategory);
@@ -85,64 +94,57 @@ const ProductFilter = ({
           currentCategories.splice(index, 1);
         }
       }
-      
-      return {
-        ...prev,
-        category: currentCategories.length > 0 ? 
-          (currentCategories.length === 1 ? currentCategories[0] : undefined) : 
-          "all",
-        categories: currentCategories,
-      };
-    });
+
+      newFilters.category =
+        currentCategories.length > 0
+          ? currentCategories.length === 1
+            ? currentCategories[0]
+            : undefined
+          : "all";
+      newFilters.categories = currentCategories;
+    }
+
+    submitFilterChanges(newFilters);
   };
 
   const handlePriceChange = (values: number[]) => {
     if (values.length >= 2) {
-      setFilters((prev) => ({
-        ...prev,
-        priceRange: [values[0], values[1]] as [number, number],
-      }));
+      const newFilters = { ...filters, priceRange: [values[0], values[1]] as [number, number] };
+      submitFilterChanges(newFilters);
     }
   };
 
   const handleMaterialToggle = (material: string, checked: boolean) => {
-    setFilters((prev) => {
-      const currentMaterials = [...(prev.materials || [])];
-      
-      if (checked) {
-        if (!currentMaterials.includes(material)) {
-          currentMaterials.push(material);
-        }
-      } else {
-        const index = currentMaterials.indexOf(material);
-        if (index > -1) {
-          currentMaterials.splice(index, 1);
-        }
-      }
+    const newFilters = { ...filters };
+    const currentMaterials = [...(newFilters.materials || [])];
 
-      return {
-        ...prev,
-        materials: currentMaterials,
-      };
-    });
+    if (checked) {
+      if (!currentMaterials.includes(material)) {
+        currentMaterials.push(material);
+      }
+    } else {
+      const index = currentMaterials.indexOf(material);
+      if (index > -1) {
+        currentMaterials.splice(index, 1);
+      }
+    }
+
+    newFilters.materials = currentMaterials;
+    submitFilterChanges(newFilters);
   };
 
   const handleStockToggle = (checked: boolean) => {
-    setFilters((prev) => ({
-      ...prev,
-      onlyInStock: checked,
-    }));
+    const newFilters = { ...filters, onlyInStock: checked };
+    submitFilterChanges(newFilters);
   };
 
   const handleSortChange = (value: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      sortBy: value as "newest" | "price-low-high" | "price-high-low" | "popular",
-    }));
+    const newFilters = { ...filters, sortBy: value as "newest" | "price-low-high" | "price-high-low" | "popular" };
+    submitFilterChanges(newFilters);
   };
 
   const handleReset = () => {
-    setFilters({
+    const newFilters = {
       category: "all",
       priceRange: minMaxPrice,
       materials: [],
@@ -150,7 +152,8 @@ const ProductFilter = ({
       sortBy: "newest",
       searchQuery: "",
       categories: [],
-    });
+    };
+    submitFilterChanges(newFilters);
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -166,10 +169,11 @@ const ProductFilter = ({
           <Input
             type="search"
             placeholder="Search products..."
-            value={filters.searchQuery}
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, searchQuery: e.target.value }))
-            }
+            value={searchInput}
+            onChange={(e) => {
+              setSearchInput(e.target.value);
+              debouncedSearchUpdate(e.target.value);
+            }}
             className="flex-1"
           />
           <Button type="submit" className="shrink-0">

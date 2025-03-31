@@ -90,10 +90,7 @@ const ProductsPage = () => {
   const [products, setProducts] = useState(getFilteredProducts(activeFilters));
   
   useEffect(() => {
-    // Prevent unnecessary filter operations
-    const filterString = JSON.stringify(activeFilters);
-    
-    // Simulate loading
+    // Use a stable dependency rather than stringifying the entire object
     setIsLoading(true);
     
     const timeoutId = setTimeout(() => {
@@ -102,13 +99,14 @@ const ProductsPage = () => {
       setIsLoading(false);
     }, 500);
     
-    // Clean up timeout to prevent memory leaks
     return () => clearTimeout(timeoutId);
-  }, [JSON.stringify(activeFilters)]); // Use stringified version to properly detect changes
+  }, [activeFilters]); // Use the object directly, React will do shallow comparison
   
   const handleFilterChange = (filters: FilterType) => {
-    setActiveFilters(filters);
+    // Update URL first
     updateUrlWithFilters(filters);
+    // Then update state
+    setActiveFilters(filters);
   };
 
   const handleRemoveFilter = (filterKey: keyof FilterType, value?: string) => {
@@ -205,7 +203,7 @@ const ProductsPage = () => {
             <div className="space-y-6">
               <h1 className="font-playfair text-2xl font-bold">Products</h1>
               <ProductFilter 
-                key={JSON.stringify(activeFilters)} // Add this line
+                key={`filter-${activeFilters.category || 'all'}`}
                 onFilterChange={handleFilterChange} 
                 initialFilters={activeFilters}
               />
@@ -231,7 +229,7 @@ const ProductsPage = () => {
                     </SheetHeader>
                     <div className="mt-6">
                       <ProductFilter 
-                        key={JSON.stringify(activeFilters)} // Add this line
+                        key={`filter-${activeFilters.category || 'all'}`}
                         onFilterChange={handleFilterChange} 
                         initialFilters={activeFilters} 
                       />
