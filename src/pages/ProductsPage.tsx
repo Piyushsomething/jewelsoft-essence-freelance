@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -17,74 +16,131 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+const updateUrlWithFilters = (filters: FilterType) => {
+  const params = new URLSearchParams();
+  
+  // Only add parameters that have values
+  if (filters.category && filters.category !== 'all') {
+    params.set('category', filters.category);
+  }
+  
+  if (filters.categories && filters.categories.length > 0) {
+    params.set('categories', filters.categories.join(','));
+  }
+  
+  if (filters.searchQuery) {
+    params.set('search', filters.searchQuery);
+  }
+  
+  if (filters.priceRange) {
+    params.set('priceRange', `${filters.priceRange[0]}-${filters.priceRange[1]}`);
+  }
+  
+  if (filters.materials && filters.materials.length > 0) {
+    params.set('materials', filters.materials.join(','));
+  }
+  
+  if (filters.onlyInStock) {
+    params.set('inStock', 'true');
+  }
+  
+  if (filters.sortBy && filters.sortBy !== "newest") {
+    params.set('sortBy', filters.sortBy);
+  }
+  
+  // Replace current URL without reloading the page
+  window.history.replaceState({}, '', 
+    params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname
+  );
+};
+
 const ProductsPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  
+
+  // Parse all filter parameters from URL
   const initialCategory = searchParams.get("category") || "all";
   const initialSearch = searchParams.get("search") || "";
-  
-  const [isLoading, setIsLoading] = useState(true);
-  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const initialCategories = searchParams.get("categories")?.split(',') as ProductCategory[] || [];
+  const initialMaterials = searchParams.get("materials")?.split(',') || [];
+  const initialOnlyInStock = searchParams.get("inStock") === "true";
+  const initialSortBy = searchParams.get("sortBy") as "newest" | "price-low-high" | "price-high-low" | "popular" || "newest";
+
+  // Parse price range if present
+  let initialPriceRange: [number, number] | undefined = undefined;
+  if (searchParams.get("priceRange")) {
+    const [min, max] = searchParams.get("priceRange")!.split('-');
+    initialPriceRange = [parseInt(min), parseInt(max)];
+  }
+
   const [activeFilters, setActiveFilters] = useState<FilterType>({
     category: initialCategory as ProductCategory | "all",
     searchQuery: initialSearch,
-    categories: initialCategory !== "all" ? [initialCategory as ProductCategory] : [],
+    categories: initialCategories.length > 0 ? initialCategories : 
+                (initialCategory !== "all" ? [initialCategory as ProductCategory] : []),
+    materials: initialMaterials,
+    onlyInStock: initialOnlyInStock,
+    sortBy: initialSortBy,
+    priceRange: initialPriceRange,
   });
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   
-  const [products, setProducts] = useState(getFilteredProducts({
-    category: initialCategory as ProductCategory | "all",
-    searchQuery: initialSearch,
-    categories: initialCategory !== "all" ? [initialCategory as ProductCategory] : [],
-  }));
+  const [products, setProducts] = useState(getFilteredProducts(activeFilters));
   
   useEffect(() => {
+    // Prevent unnecessary filter operations
+    const filterString = JSON.stringify(activeFilters);
+    
     // Simulate loading
     setIsLoading(true);
     
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       const filtered = getFilteredProducts(activeFilters);
       setProducts(filtered);
       setIsLoading(false);
     }, 500);
-  }, [activeFilters]);
+    
+    // Clean up timeout to prevent memory leaks
+    return () => clearTimeout(timeoutId);
+  }, [JSON.stringify(activeFilters)]); // Use stringified version to properly detect changes
   
   const handleFilterChange = (filters: FilterType) => {
     setActiveFilters(filters);
+    updateUrlWithFilters(filters);
   };
-  
+
   const handleRemoveFilter = (filterKey: keyof FilterType, value?: string) => {
-    setActiveFilters(prev => {
-      const newFilters = { ...prev };
-      
-      if (filterKey === "materials" && value) {
-        // Remove specific material
-        newFilters.materials = (prev.materials || []).filter(m => m !== value);
-        if (newFilters.materials.length === 0) {
-          delete newFilters.materials;
-        }
-      } else if (filterKey === "categories" && value) {
-        // Remove specific category
-        newFilters.categories = (prev.categories || []).filter(c => c !== value);
-        if (newFilters.categories.length === 0) {
-          newFilters.category = "all";
-          delete newFilters.categories;
-        } else if (newFilters.categories.length === 1) {
-          newFilters.category = newFilters.categories[0];
-        }
-      } else if (filterKey === "priceRange") {
-        delete newFilters.priceRange;
-      } else if (filterKey === "onlyInStock") {
-        newFilters.onlyInStock = false;
-      } else if (filterKey === "category" && value === undefined) {
+    const newFilters = { ...activeFilters };
+    
+    if (filterKey === "materials" && value) {
+      newFilters.materials = (activeFilters.materials || []).filter(m => m !== value);
+      if (newFilters.materials.length === 0) {
+        delete newFilters.materials;
+      }
+    } else if (filterKey === "categories" && value) {
+      newFilters.categories = (activeFilters.categories || []).filter(c => c !== value);
+      if (newFilters.categories.length === 0) {
         newFilters.category = "all";
         delete newFilters.categories;
-      } else if (filterKey === "searchQuery") {
-        newFilters.searchQuery = "";
+      } else if (newFilters.categories.length === 1) {
+        newFilters.category = newFilters.categories[0];
       }
-      
-      return newFilters;
-    });
+    } else if (filterKey === "priceRange") {
+      delete newFilters.priceRange;
+    } else if (filterKey === "onlyInStock") {
+      newFilters.onlyInStock = false;
+    } else if (filterKey === "category") {
+      newFilters.category = "all";
+      delete newFilters.categories;
+    } else if (filterKey === "searchQuery") {
+      newFilters.searchQuery = "";
+    }
+    
+    // Update URL first, then state
+    updateUrlWithFilters(newFilters);
+    setActiveFilters(newFilters);
   };
   
   const getActiveFilterLabels = () => {
@@ -149,6 +205,7 @@ const ProductsPage = () => {
             <div className="space-y-6">
               <h1 className="font-playfair text-2xl font-bold">Products</h1>
               <ProductFilter 
+                key={JSON.stringify(activeFilters)} // Add this line
                 onFilterChange={handleFilterChange} 
                 initialFilters={activeFilters}
               />
@@ -174,6 +231,7 @@ const ProductsPage = () => {
                     </SheetHeader>
                     <div className="mt-6">
                       <ProductFilter 
+                        key={JSON.stringify(activeFilters)} // Add this line
                         onFilterChange={handleFilterChange} 
                         initialFilters={activeFilters} 
                       />
@@ -196,7 +254,9 @@ const ProductsPage = () => {
                   value={activeFilters.sortBy || "newest"}
                   onChange={(e) => {
                     const sortValue = e.target.value as "newest" | "price-low-high" | "price-high-low" | "popular";
-                    setActiveFilters(prev => ({ ...prev, sortBy: sortValue }));
+                    const updatedFilters = { ...activeFilters, sortBy: sortValue };
+                    setActiveFilters(updatedFilters);
+                    updateUrlWithFilters(updatedFilters);
                   }}
                 >
                   <option value="newest">Sort by: Newest</option>
@@ -218,7 +278,11 @@ const ProductsPage = () => {
                   >
                     {filter.label}
                     <button
-                      onClick={() => handleRemoveFilter(filter.key, filter.value)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleRemoveFilter(filter.key, filter.value);
+                      }}
                       className="ml-1 rounded-full hover:bg-muted p-0.5"
                       aria-label={`Remove ${filter.label} filter`}
                     >
@@ -229,15 +293,27 @@ const ProductsPage = () => {
                 
                 {getActiveFilterLabels().length > 0 && (
                   <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setActiveFilters({
-                      category: "all"
-                    })}
-                    className="text-sm"
-                  >
-                    Clear All
-                  </Button>
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    const newFilters: FilterType = { 
+                      category: "all", 
+                      categories: [],
+                      searchQuery: "",
+                      materials: [],
+                      onlyInStock: false,
+                      sortBy: "newest",
+                      // Don't include priceRange to reset it to default
+                    };
+                    
+                    // First update URL then state to avoid multiple renders
+                    updateUrlWithFilters(newFilters);
+                    setActiveFilters(newFilters);
+                  }}
+                  className="text-sm"
+                >
+                  Clear All
+                </Button>
                 )}
               </div>
             </div>

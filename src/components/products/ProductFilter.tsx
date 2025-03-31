@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -44,6 +43,19 @@ const ProductFilter = ({
     searchQuery: initialFilters.searchQuery || "",
     categories: initialFilters.categories || [],
   });
+
+  // Add this useEffect to sync with parent state changes
+  useEffect(() => {
+    setFilters({
+      category: initialFilters.category || "all",
+      priceRange: initialFilters.priceRange || minMaxPrice,
+      materials: initialFilters.materials || [],
+      onlyInStock: initialFilters.onlyInStock || false,
+      sortBy: initialFilters.sortBy || "newest",
+      searchQuery: initialFilters.searchQuery || "",
+      categories: initialFilters.categories || [],
+    });
+  }, [initialFilters, minMaxPrice]);
 
   useEffect(() => {
     onFilterChange(filters);
