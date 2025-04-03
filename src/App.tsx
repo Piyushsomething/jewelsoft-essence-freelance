@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { WishlistProvider } from "@/contexts/WishlistContext";
+import { Analytics } from '@vercel/analytics/react';
 
 // Pages
 import Index from "./pages/Index";
@@ -57,6 +58,7 @@ const App = () => (
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
+              <Analytics />
             </TooltipProvider>
           </WishlistProvider>
         </CartProvider>

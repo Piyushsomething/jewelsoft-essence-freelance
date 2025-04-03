@@ -1,4 +1,4 @@
-
+import { track } from '@vercel/analytics';
 import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Heart, ShoppingCart, ChevronLeft, ChevronRight, Star, Share2, ArrowLeft } from "lucide-react";
@@ -24,6 +24,18 @@ const ProductDetail = () => {
   const product = id ? getProductById(id) : null;
   const relatedProducts = product ? getRelatedProducts(product.id, product.category) : [];
   
+  //tracker for vercel
+  useEffect(() => {
+    if (product) {
+      track('product_viewed', { 
+        productId: product.id,
+        productName: product.name,
+        category: product.category,
+        price: product.price
+      });
+    }
+  }, [product]);
+
   if (!product) {
     return (
       <Layout>
