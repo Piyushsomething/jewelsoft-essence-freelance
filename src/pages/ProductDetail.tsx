@@ -1,5 +1,5 @@
 import { track } from '@vercel/analytics';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Heart, ShoppingCart, ChevronLeft, ChevronRight, Star, Share2, ArrowLeft } from "lucide-react";
 import Layout from "@/components/layout/Layout";
