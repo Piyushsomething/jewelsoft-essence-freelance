@@ -1,4 +1,3 @@
-
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -22,7 +21,7 @@ const About = () => {
             Our Story
           </h1>
           <p className="text-lg max-w-2xl">
-            At JewelSoft, we blend traditional craftsmanship with contemporary design to create timeless silver jewelry that tells a story.
+            At Parshav Exports, we blend traditional craftsmanship with contemporary design to create timeless silver jewelry that tells a story.
           </p>
         </div>
       </section>
@@ -34,13 +33,13 @@ const About = () => {
             <div>
               <h2 className="font-playfair text-3xl font-bold mb-6">Our Journey</h2>
               <p className="mb-4">
-                JewelSoft was founded in 2010 with a simple mission: to create exquisite silver jewelry that honors traditional craftsmanship while embracing modern aesthetics. What began as a small workshop in Mumbai has grown into a beloved brand known for its attention to detail and commitment to quality.
+                Parshav Exports was founded with a simple mission: to create exquisite silver jewelry that honors traditional craftsmanship while embracing modern aesthetics. What began as a small workshop in Jaipur has grown into a beloved brand known for its attention to detail and commitment to quality.
               </p>
               <p className="mb-4">
                 Our founder, Piyush, discovered his passion for silversmithing during his travels across rural India, where he was captivated by the intricate techniques passed down through generations. Inspired by this rich heritage, he assembled a team of skilled artisans dedicated to preserving these traditions while infusing them with contemporary style.
               </p>
               <p>
-                Today, JewelSoft continues to honor its roots while evolving with the times. Each piece in our collection represents our journey and our commitment to creating jewelry that becomes part of your personal story.
+                Today, Parshav Exports continues to honor its roots while evolving with the times. Each piece in our collection represents our journey and our commitment to creating jewelry that becomes part of your personal story.
               </p>
             </div>
             
@@ -62,7 +61,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="font-playfair text-3xl font-bold mb-4">Our Values</h2>
             <p>
-              At the heart of JewelSoft are the principles that guide everything we do, from design to customer service.
+              At the heart of Parshav Exports are the principles that guide everything we do, from design to customer service.
             </p>
           </div>
           
@@ -143,79 +142,37 @@ const About = () => {
         </div>
       </section>
       
-      {/* Meet Our Team */}
+      {/* Meet Our Team - Modified to show only the creator */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="font-playfair text-3xl font-bold mb-4">Meet Our Team</h2>
+            <h2 className="font-playfair text-3xl font-bold mb-4">About the Creator</h2>
             <p>
-              The talented individuals behind JewelSoft bring together diverse skills, perspectives, and a shared passion for creating exceptional jewelry.
+              Meet the developer behind the Parshav Exports website.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Team Member 1 */}
-            <div className="text-center">
-              <div className="aspect-square rounded-full overflow-hidden mb-4 relative group">
+          <div className="flex justify-center">
+            {/* Only Piyush as Creator */}
+            <div className="text-center max-w-md">
+              <div className="aspect-square rounded-full overflow-hidden mb-4 relative group w-48 h-48 mx-auto">
                 <img
                   src="https://source.unsplash.com/random/200x200/?portrait,man&sig=11"
-                  alt="Piyush Sharma"
+                  alt="Piyush"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <h3 className="font-playfair text-xl font-bold mb-1">Piyush Sharma</h3>
-              <p className="text-muted-foreground mb-2">Founder & Creative Director</p>
-              <p className="text-sm">
-                With over 15 years of experience in jewelry design, Piyush leads our creative vision.
+              <h3 className="font-playfair text-xl font-bold mb-1">Piyush</h3>
+              <p className="text-muted-foreground mb-3">Creator & Developer</p>
+              <p className="text-sm mb-4">
+                Full Stack Developer @LYZR.AI | Ex WESEE (Indian Naval HQ) | Ex HashedIn by Deloitte | AI Application developer
               </p>
-            </div>
-            
-            {/* Team Member 2 */}
-            <div className="text-center">
-              <div className="aspect-square rounded-full overflow-hidden mb-4 relative group">
-                <img
-                  src="https://source.unsplash.com/random/200x200/?portrait,woman&sig=12"
-                  alt="Ananya Mehta"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+              <div className="flex flex-col gap-2 items-center">
+                <a href="tel:+918570936103" className="text-gold hover:underline">+91 8570936103</a>
+                <a href="mailto:piyush4for@gmail.com" className="text-gold hover:underline">piyush4for@gmail.com</a>
+                <a href="https://linkedin.com/in/piyush4for" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">linkedin.com/in/piyush4for</a>
+                <a href="https://github.com/piyush4for" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">github.com/piyush4for</a>
               </div>
-              <h3 className="font-playfair text-xl font-bold mb-1">Ananya Mehta</h3>
-              <p className="text-muted-foreground mb-2">Head Designer</p>
-              <p className="text-sm">
-                Ananya brings contemporary flair to traditional designs, creating our signature aesthetic.
-              </p>
-            </div>
-            
-            {/* Team Member 3 */}
-            <div className="text-center">
-              <div className="aspect-square rounded-full overflow-hidden mb-4 relative group">
-                <img
-                  src="https://source.unsplash.com/random/200x200/?portrait,man&sig=13"
-                  alt="Rahul Kapoor"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <h3 className="font-playfair text-xl font-bold mb-1">Rahul Kapoor</h3>
-              <p className="text-muted-foreground mb-2">Master Silversmith</p>
-              <p className="text-sm">
-                With 20 years of experience, Rahul leads our workshop and trains new artisans.
-              </p>
-            </div>
-            
-            {/* Team Member 4 */}
-            <div className="text-center">
-              <div className="aspect-square rounded-full overflow-hidden mb-4 relative group">
-                <img
-                  src="https://source.unsplash.com/random/200x200/?portrait,woman&sig=14"
-                  alt="Priya Gupta"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <h3 className="font-playfair text-xl font-bold mb-1">Priya Gupta</h3>
-              <p className="text-muted-foreground mb-2">Customer Experience Manager</p>
-              <p className="text-sm">
-                Priya ensures every customer interaction with JewelSoft is exceptional.
-              </p>
             </div>
           </div>
         </div>
@@ -225,7 +182,7 @@ const About = () => {
       <section className="py-16 bg-gold text-darkText">
         <div className="container-custom text-center">
           <h2 className="font-playfair text-3xl font-bold mb-4">
-            Experience the JewelSoft Difference
+            Experience the Parshav Exports Difference
           </h2>
           <p className="max-w-2xl mx-auto mb-8">
             Discover our collection of handcrafted silver jewelry, where tradition meets contemporary design.

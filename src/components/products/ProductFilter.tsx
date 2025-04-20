@@ -162,153 +162,204 @@ const ProductFilter = ({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Search Filter (Mobile) */}
-      <div className="md:hidden">
-        <form onSubmit={handleSearch} className="flex gap-2">
-          <Input
-            type="search"
-            placeholder="Search products..."
-            value={searchInput}
-            onChange={(e) => {
-              setSearchInput(e.target.value);
-              debouncedSearchUpdate(e.target.value);
-            }}
-            className="flex-1"
-          />
-          <Button type="submit" className="shrink-0">
-            Search
+    <div className="md:h-auto md:overflow-visible flex flex-col h-[calc(100vh-4rem)]">
+      {/* Mobile header with search and sort - fixed position */}
+      <div className="md:hidden sticky top-0 bg-background z-30 pb-4 border-b shadow-sm">
+        <div className="px-4 pt-4 space-y-4">
+          <form onSubmit={handleSearch} className="flex gap-2">
+            <Input
+              type="search"
+              placeholder="Search products..."
+              value={searchInput}
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+                debouncedSearchUpdate(e.target.value);
+              }}
+              className="flex-1"
+            />
+            <Button type="submit" className="shrink-0">
+              Search
+            </Button>
+          </form>
+
+          <div>
+            <Label htmlFor="mobile-sort">Sort By</Label>
+            <Select
+              value={filters.sortBy}
+              onValueChange={handleSortChange}
+            >
+              <SelectTrigger id="mobile-sort">
+                <SelectValue placeholder="Sort products" />
+              </SelectTrigger>
+              <SelectContent position="popper" sideOffset={0}>
+                <SelectItem value="newest">Newest</SelectItem>
+                <SelectItem value="price-low-high">Price: Low to High</SelectItem>
+                <SelectItem value="price-high-low">Price: High to Low</SelectItem>
+                <SelectItem value="popular">Popularity</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </div>
+
+      {/* Scrollable filter section */}
+      <div className="md:space-y-6 overflow-y-auto flex-1 pb-20">
+        <div className="px-4 md:px-0 py-4">
+          {/* Accordion Filters */}
+          <Accordion type="multiple" defaultValue={["category", "price", "material", "stock"]}>
+            {/* Categories */}
+            <AccordionItem value="category">
+              <AccordionTrigger className="font-playfair">Categories</AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-2">
+                  {categories.map((category) => (
+                    <div key={category} className="flex items-center">
+                      <Checkbox
+                        id={`category-${category}`}
+                        checked={
+                          category === "all" 
+                            ? (filters.categories || []).length === 0 || filters.category === "all"
+                            : (filters.categories || []).includes(category as ProductCategory)
+                        }
+                        onCheckedChange={(checked) => 
+                          handleCategoryToggle(category, checked === true)
+                        }
+                      />
+                      <label
+                        htmlFor={`category-${category}`}
+                        className="ml-2 text-sm capitalize cursor-pointer"
+                      >
+                        {category === "all" ? "All Categories" : category}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Price Range */}
+            <AccordionItem value="price">
+              <AccordionTrigger className="font-playfair">Price Range</AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-6">
+                  {/* Price display with input fields */}
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="w-full">
+                      <Label htmlFor="min-price" className="text-xs text-muted-foreground mb-1 block">Min</Label>
+                      <Input
+                        id="min-price"
+                        type="number"
+                        value={filters.priceRange?.[0] || minMaxPrice[0]}
+                        min={minMaxPrice[0]}
+                        max={filters.priceRange?.[1] || minMaxPrice[1]}
+                        onChange={(e) => {
+                          const value = Number(e.target.value);
+                          if (isNaN(value)) return;
+                          handlePriceChange([value, filters.priceRange?.[1] || minMaxPrice[1]]);
+                        }}
+                        className="h-8"
+                      />
+                    </div>
+                    <div className="flex items-center pt-6">
+                      <span className="text-muted-foreground">-</span>
+                    </div>
+                    <div className="w-full">
+                      <Label htmlFor="max-price" className="text-xs text-muted-foreground mb-1 block">Max</Label>
+                      <Input
+                        id="max-price"
+                        type="number"
+                        value={filters.priceRange?.[1] || minMaxPrice[1]}
+                        min={filters.priceRange?.[0] || minMaxPrice[0]}
+                        max={minMaxPrice[1]}
+                        onChange={(e) => {
+                          const value = Number(e.target.value);
+                          if (isNaN(value)) return;
+                          handlePriceChange([filters.priceRange?.[0] || minMaxPrice[0], value]);
+                        }}
+                        className="h-8"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Slider with improved styling */}
+                  <Slider
+                    defaultValue={[minMaxPrice[0], minMaxPrice[1]]}
+                    min={minMaxPrice[0]}
+                    max={minMaxPrice[1]}
+                    step={100}
+                    value={[
+                      filters.priceRange?.[0] || minMaxPrice[0],
+                      filters.priceRange?.[1] || minMaxPrice[1],
+                    ]}
+                    onValueChange={handlePriceChange}
+                    className="mt-6"
+                    thumbClassName="w-5 h-5 bg-gold border-2 border-white"
+                    aria-label="Price range"
+                  />
+                  
+                  {/* Price range indicators */}
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>{formatPrice(minMaxPrice[0])}</span>
+                    <span>{formatPrice(minMaxPrice[1])}</span>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Materials */}
+            <AccordionItem value="material">
+              <AccordionTrigger className="font-playfair">Materials</AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-2">
+                  {materials.map((material) => (
+                    <div key={material} className="flex items-center">
+                      <Checkbox
+                        id={`material-${material}`}
+                        checked={(filters.materials || []).includes(material)}
+                        onCheckedChange={(checked) => 
+                          handleMaterialToggle(material, checked === true)
+                        }
+                      />
+                      <label
+                        htmlFor={`material-${material}`}
+                        className="ml-2 text-sm cursor-pointer"
+                      >
+                        {material}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Stock Status */}
+            <AccordionItem value="stock">
+              <AccordionTrigger className="font-playfair">Availability</AccordionTrigger>
+              <AccordionContent>
+                <div className="flex items-center">
+                  <Checkbox
+                    id="in-stock"
+                    checked={filters.onlyInStock}
+                    onCheckedChange={(checked) => handleStockToggle(!!checked)}
+                  />
+                  <label htmlFor="in-stock" className="ml-2 text-sm cursor-pointer">
+                    In Stock Only
+                  </label>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          {/* Reset Button */}
+          <Button
+            variant="outline"
+            onClick={handleReset}
+            className="w-full my-4"
+          >
+            Reset Filters
           </Button>
-        </form>
+        </div>
       </div>
-
-      {/* Sort By (Mobile) */}
-      <div className="md:hidden">
-        <Label htmlFor="mobile-sort">Sort By</Label>
-        <Select
-          value={filters.sortBy}
-          onValueChange={handleSortChange}
-        >
-          <SelectTrigger id="mobile-sort">
-            <SelectValue placeholder="Sort products" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="newest">Newest</SelectItem>
-            <SelectItem value="price-low-high">Price: Low to High</SelectItem>
-            <SelectItem value="price-high-low">Price: High to Low</SelectItem>
-            <SelectItem value="popular">Popularity</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Accordion Filters */}
-      <Accordion type="multiple" defaultValue={["category", "price", "material", "stock"]}>
-        {/* Categories */}
-        <AccordionItem value="category">
-          <AccordionTrigger className="font-playfair">Categories</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {categories.map((category) => (
-                <div key={category} className="flex items-center">
-                  <Checkbox
-                    id={`category-${category}`}
-                    checked={
-                      category === "all" 
-                        ? (filters.categories || []).length === 0 || filters.category === "all"
-                        : (filters.categories || []).includes(category as ProductCategory)
-                    }
-                    onCheckedChange={(checked) => 
-                      handleCategoryToggle(category, checked === true)
-                    }
-                  />
-                  <label
-                    htmlFor={`category-${category}`}
-                    className="ml-2 text-sm capitalize cursor-pointer"
-                  >
-                    {category === "all" ? "All Categories" : category}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-
-        {/* Price Range */}
-        <AccordionItem value="price">
-          <AccordionTrigger className="font-playfair">Price Range</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-4">
-              <Slider
-                defaultValue={[minMaxPrice[0], minMaxPrice[1]]}
-                min={minMaxPrice[0]}
-                max={minMaxPrice[1]}
-                step={100}
-                value={[
-                  filters.priceRange?.[0] || minMaxPrice[0],
-                  filters.priceRange?.[1] || minMaxPrice[1],
-                ]}
-                onValueChange={handlePriceChange}
-              />
-              <div className="flex justify-between text-sm">
-                <span>{formatPrice(filters.priceRange?.[0] || minMaxPrice[0])}</span>
-                <span>{formatPrice(filters.priceRange?.[1] || minMaxPrice[1])}</span>
-              </div>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-
-        {/* Materials */}
-        <AccordionItem value="material">
-          <AccordionTrigger className="font-playfair">Materials</AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-2">
-              {materials.map((material) => (
-                <div key={material} className="flex items-center">
-                  <Checkbox
-                    id={`material-${material}`}
-                    checked={(filters.materials || []).includes(material)}
-                    onCheckedChange={(checked) => 
-                      handleMaterialToggle(material, checked === true)
-                    }
-                  />
-                  <label
-                    htmlFor={`material-${material}`}
-                    className="ml-2 text-sm cursor-pointer"
-                  >
-                    {material}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-
-        {/* Stock Status */}
-        <AccordionItem value="stock">
-          <AccordionTrigger className="font-playfair">Availability</AccordionTrigger>
-          <AccordionContent>
-            <div className="flex items-center">
-              <Checkbox
-                id="in-stock"
-                checked={filters.onlyInStock}
-                onCheckedChange={(checked) => handleStockToggle(!!checked)}
-              />
-              <label htmlFor="in-stock" className="ml-2 text-sm cursor-pointer">
-                In Stock Only
-              </label>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-
-      {/* Reset Button */}
-      <Button
-        variant="outline"
-        onClick={handleReset}
-        className="w-full"
-      >
-        Reset Filters
-      </Button>
     </div>
   );
 };

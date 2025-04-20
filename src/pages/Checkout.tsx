@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -56,26 +55,43 @@ const Checkout = () => {
     
     setIsProcessing(true);
     
-    // Simulate payment processing
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Create a simpler order summary for WhatsApp
+      const orderSummary = items.map(item => 
+        `- ${item.product.name} (${item.quantity} × ${formatPrice(item.product.price)})`
+      ).join('\n');
       
-      // Process successful
-      clearCart();
-      toast({
-        title: "Payment successful!",
-        description: "Your order has been placed successfully.",
-      });
+      const customerInfo = `Name: ${shippingDetails.firstName} ${shippingDetails.lastName}\nEmail: ${shippingDetails.email}\nPhone: ${shippingDetails.phone}`;
+      
+      const totalAmount = `Total: ${formatPrice(totalPrice)}`;
+      
+      const whatsappMessage = `Order from Parshav Exports\n\n${customerInfo}\n\n${orderSummary}\n\n${totalAmount}`;
+      
+      // Simply use encodeURIComponent without replacing %0A
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      
+      // Use wa.me format which handles line breaks better
+      const whatsappURL = `https://wa.me/919660622062?text=${encodedMessage}`;
       
       // Set order completed in session storage for the success page
       sessionStorage.setItem('orderCompleted', 'true');
       
+      // Wait a moment then redirect to WhatsApp
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Open WhatsApp in new tab
+      window.open(whatsappURL, '_blank');
+      
       // Navigate to success page
       navigate("/checkout/success");
+      
+      // Clear cart
+      clearCart();
+      
     } catch (error) {
       toast({
-        title: "Payment failed",
-        description: "There was an error processing your payment. Please try again.",
+        title: "Checkout failed",
+        description: "There was an error processing your order. Please try again.",
         variant: "destructive"
       });
     } finally {
@@ -234,46 +250,7 @@ const Checkout = () => {
                 </CardContent>
               </Card>
               
-              <div className="mt-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Payment Method</CardTitle>
-                    <CardDescription>Select your preferred payment method</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <RadioGroup 
-                      value={paymentMethod} 
-                      onValueChange={(value) => setPaymentMethod(value as "card" | "paypal")}
-                      className="space-y-4"
-                    >
-                      <div className="flex items-center space-x-2 border rounded-lg p-3 cursor-pointer hover:bg-muted">
-                        <RadioGroupItem value="card" id="payment-card" />
-                        <Label htmlFor="payment-card" className="cursor-pointer flex-1 flex items-center">
-                          <CreditCard className="mr-2 h-5 w-5" />
-                          Credit/Debit Card
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2 border rounded-lg p-3 cursor-pointer hover:bg-muted">
-                        <RadioGroupItem value="paypal" id="payment-paypal" />
-                        <Label htmlFor="payment-paypal" className="cursor-pointer flex-1">
-                          <div className="flex items-center">
-                            <svg className="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M19.0625 7.125H17.4375V6.5625C17.4375 6.11016 17.0773 5.75 16.625 5.75H4.4375C3.98516 5.75 3.625 6.11016 3.625 6.5625V15.1875C3.625 15.6398 3.98516 16 4.4375 16H6.0625V16.5625C6.0625 17.0148 6.42266 17.375 6.875 17.375H19.0625C19.5148 17.375 19.875 17.0148 19.875 16.5625V7.9375C19.875 7.48516 19.5148 7.125 19.0625 7.125ZM4.71875 15.0312V6.71875H16.3438V15.0312H4.71875ZM18.7812 16.2812H6.875V16H16.625C17.0773 16 17.4375 15.6398 17.4375 15.1875V8.1875H18.7812V16.2812Z" fill="#0070ba"/>
-                            </svg>
-                            PayPal
-                          </div>
-                        </Label>
-                      </div>
-                    </RadioGroup>
-                    
-                    {paymentMethod === "card" && (
-                      <div className="mt-4 p-4 border rounded-lg">
-                        <CheckoutPayment />
-                      </div>
-                    )}
-                  </CardContent>
-                  <CardFooter>
-                    <Button 
+              <Button 
                       type="submit" 
                       className="w-full" 
                       disabled={isDisabled}
@@ -281,9 +258,6 @@ const Checkout = () => {
                     >
                       {isProcessing ? "Processing..." : `Pay ${formatPrice(totalPrice)}`}
                     </Button>
-                  </CardFooter>
-                </Card>
-              </div>
             </form>
           </div>
           

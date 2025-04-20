@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Product } from "@/types/product";
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
+import { motion } from "framer-motion";
 
 interface ProductCardProps {
   product: Product;
@@ -36,7 +36,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
   
   return (
-    <div className="product-card group">
+    <motion.div 
+      className="product-card group transform transition-all duration-300 hover:-translate-y-2"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
       {/* Product Image with Overlay */}
       <Link to={`/product/${product.id}`} className="block relative overflow-hidden">
         <div className="aspect-square relative overflow-hidden bg-light dark:bg-dark/90">
@@ -46,12 +52,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
           
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          
           {/* Overlay with actions */}
           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
             <Button
               size="icon"
               variant="secondary"
-              className="rounded-full h-10 w-10 bg-white text-dark hover:bg-gold hover:text-darkText transition-colors"
+              className="rounded-full h-10 w-10 bg-white text-dark hover:bg-gold hover:text-darkText transition-colors transform translate-y-4 group-hover:translate-y-0 transition-transform"
               onClick={handleWishlistToggle}
               aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
             >
@@ -61,7 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Button
               size="icon"
               variant="secondary"
-              className="rounded-full h-10 w-10 bg-white text-dark hover:bg-gold hover:text-darkText transition-colors"
+              className="rounded-full h-10 w-10 bg-white text-dark hover:bg-gold hover:text-darkText transition-colors transform translate-y-4 group-hover:translate-y-0 transition-transform delay-100"
               onClick={handleAddToCart}
               aria-label="Add to cart"
               disabled={!product.inStock}
@@ -113,7 +122,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

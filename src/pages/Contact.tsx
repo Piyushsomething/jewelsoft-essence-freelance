@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Mail, Phone, MapPin, SendHorizontal } from "lucide-react";
 import Layout from "@/components/layout/Layout";
@@ -94,8 +93,9 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium mb-1">Our Store</h3>
                     <p className="text-muted-foreground">
-                      123 Silver Street, Diamond District<br />
-                      Mumbai 400001, India
+                      MSB ka Rasta, Jhoro Bazar<br />
+                      Jaipur, Rajasthan, 302003<br />
+                      India
                     </p>
                   </div>
                 </div>
@@ -107,12 +107,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium mb-1">Email Us</h3>
                     <p className="text-muted-foreground">
-                      <a href="mailto:info@jewelsoft.com" className="hover:text-gold transition-colors">
-                        info@jewelsoft.com
-                      </a>
-                      <br />
-                      <a href="mailto:support@jewelsoft.com" className="hover:text-gold transition-colors">
-                        support@jewelsoft.com
+                      <a href="mailto:info@parshavexports.com" className="hover:text-gold transition-colors">
+                        info@parshavexports.com
                       </a>
                     </p>
                   </div>
@@ -125,11 +121,11 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium mb-1">Call Us</h3>
                     <p className="text-muted-foreground">
-                      <a href="tel:+919876543210" className="hover:text-gold transition-colors">
-                        +91 9876543210
+                      <a href="tel:+919660622062" className="hover:text-gold transition-colors">
+                        +91 9660622062
                       </a>
                       <br />
-                      Monday to Saturday, 10am to 7pm
+                      Monday to Sunday, 10am to 8pm
                     </p>
                   </div>
                 </div>
@@ -140,16 +136,8 @@ const Contact = () => {
                 <h3 className="font-playfair text-xl font-bold mb-4">Store Hours</h3>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span>Monday - Friday</span>
-                    <span>10:00 AM - 7:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday</span>
-                    <span>10:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span>Closed</span>
+                    <span>Monday - Sunday</span>
+                    <span>10:00 AM - 8:00 PM</span>
                   </div>
                 </div>
               </div>
@@ -242,31 +230,6 @@ const Contact = () => {
                     )}
                   </Button>
                 </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Map Section */}
-      <section className="py-16 bg-light dark:bg-dark">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="font-playfair text-3xl font-bold mb-4">Visit Our Store</h2>
-            <p className="max-w-2xl mx-auto text-muted-foreground">
-              Come experience our jewelry in person and meet our friendly team.
-            </p>
-          </div>
-          
-          <div className="border border-border rounded-md overflow-hidden h-[400px] relative">
-            {/* Placeholder for Google Map (In a real app, you'd use Google Maps API) */}
-            <div className="absolute inset-0 bg-muted flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-muted-foreground mb-2 mx-auto" />
-                <p className="font-medium mb-1">JewelSoft Store</p>
-                <p className="text-sm text-muted-foreground">
-                  123 Silver Street, Diamond District, Mumbai 400001, India
-                </p>
               </div>
             </div>
           </div>

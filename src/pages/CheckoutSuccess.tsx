@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -31,7 +30,7 @@ const CheckoutSuccess = () => {
           
           <h1 className="font-playfair text-3xl font-bold mb-4">Thank You for Your Order!</h1>
           <p className="text-muted-foreground mb-2">
-            Your order has been placed successfully and is being processed.
+            Your order has been sent to our WhatsApp. We'll contact you shortly to confirm your order.
           </p>
           <p className="font-medium mb-6">
             Order Number: <span className="font-bold">{orderNumber}</span>
@@ -40,7 +39,7 @@ const CheckoutSuccess = () => {
           <div className="border-t border-b py-6 my-6">
             <h2 className="font-medium mb-2">What happens next?</h2>
             <p className="text-muted-foreground mb-4">
-              You will receive an email confirmation with your order details and tracking information once your order ships.
+              We've sent your order details to our WhatsApp. Our team will get in touch with you shortly to discuss payment and delivery options.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
