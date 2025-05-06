@@ -73,7 +73,7 @@ const Header = () => {
       <div className="container-custom py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="font-playfair text-2xl font-bold text-foreground">
-          JewelSoft
+        Parshavexport
         </Link>
 
         {/* Desktop Navigation */}
