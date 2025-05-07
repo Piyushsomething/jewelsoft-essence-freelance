@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { formatPrice } from "@/utils/format";
 import { useCart } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
-import { getProductById, getRelatedProducts } from "@/data/products";
+import { getProductById, getRelatedProducts } from "@/data/productData";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();

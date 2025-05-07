@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/accordion";
 import { ProductCategory, ProductFilter as FilterType } from "@/types/product";
 import { formatPrice } from "@/utils/format";
-import { getProductCategories, getMaterials, getPriceRange } from "@/data/products";
+import { getProductCategories, getMaterials, getPriceRange } from "@/data/productData";
 import debounce from "lodash.debounce";
 
 interface ProductFilterProps {

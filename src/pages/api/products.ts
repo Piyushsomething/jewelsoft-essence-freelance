@@ -1,6 +1,6 @@
 
 import { Product, ProductFilter, ProductCategory } from '@/types/product';
-import { products, getFilteredProducts, getProductById } from '@/data/products';
+import { products, getFilteredProducts, getProductById } from '@/data/productData';
 
 // This is a placeholder for a real API endpoint
 // In a real application, this would be implemented with a server framework

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Filter, X, SlidersHorizontal } from "lucide-react";
 import { ProductFilter as FilterType, ProductCategory } from "@/types/product";
-import { getFilteredProducts } from "@/data/products";
+import { getFilteredProducts } from "@/data/productData";
 import {
   Sheet,
   SheetContent,

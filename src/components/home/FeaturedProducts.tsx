@@ -1,4 +1,4 @@
-import { getFeaturedProducts } from "@/data/products";
+import { getFeaturedProducts } from "@/data/productData";
 import ProductGrid from "@/components/products/ProductGrid";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
