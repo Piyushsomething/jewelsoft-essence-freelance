@@ -16,7 +16,7 @@ const categories = [
   {
     id: "earrings",
     name: "Earrings",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image: "https://images.unsplash.com/photo-1714733831162-0a6e849141be?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "Beautiful earrings for everyday elegance",
   },
   {

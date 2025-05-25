@@ -43,9 +43,9 @@ const AnimatedShowcase = () => {
       name: "Bracelets",
       description: "Handcrafted bracelets that captivate",
       images: [
-         "/images/products/blacelets/sb-1.jpg",
-        "/images/products/blacelets/sb-2.jpg", 
-        "/images/products/blacelets/sb-3.jpg",
+         "/images/products/bracelets/sb-1.jpg",
+        "/images/products/bracelets/sb-2.jpg", 
+        "/images/products/bracelets/sb-3.jpg",
       ]
     },
     {
@@ -82,7 +82,7 @@ const AnimatedShowcase = () => {
   };
 
   return (
-    <div className="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="py-12 sm:py-16 bg-light dark:bg-dark">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -112,7 +112,7 @@ const AnimatedShowcase = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="relative min-h-[400px] md:h-[500px] bg-white dark:bg-gray-800"
+                className="relative min-h-[400px] md:h-[500px] bg-white dark:bg-dark"
               >
                 <div className="flex flex-col md:grid md:grid-cols-2 h-full">
                   {/* Content Side */}
