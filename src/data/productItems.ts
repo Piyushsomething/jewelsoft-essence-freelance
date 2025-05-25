@@ -213,5 +213,133 @@ export const products: Product[] = [
       rating: 4.8,
       reviewCount: 27,
       createdAt: "2023-11-01T13:15:00Z"
+    },
+    // Stone jewelry products
+    {
+      id: "stone-1",
+      name: "Mystic Amethyst Stone",
+      description: "A stunning natural amethyst stone with exceptional clarity and deep purple hue. Perfect for meditation and spiritual practices, this stone embodies tranquility and wisdom.",
+      price: 2499,
+      discountPrice: 2999,
+      category: "stones",
+      images: [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+      ],
+      material: "Natural Amethyst",
+      inStock: true,
+      isNew: true,
+      isFeatured: true,
+      weight: "45g",
+      dimensions: "4cm x 3cm x 2cm",
+      tags: ["amethyst", "crystal", "healing", "purple"],
+      rating: 4.9,
+      reviewCount: 67,
+      createdAt: "2023-12-18T10:00:00Z"
+    },
+    {
+      id: "stone-2",
+      name: "Rose Quartz Heart",
+      description: "Beautiful heart-shaped rose quartz known as the stone of unconditional love. Its gentle pink essence is a heart healer and a powerful crystal for emotional healing.",
+      price: 1899,
+      category: "stones",
+      images: [
+        "https://images.unsplash.com/photo-1518051803018-40988b2df310?ixlib=rb-4.0.3&w=500&q=60",
+        "https://images.unsplash.com/photo-1518051803018-40988b2df310?ixlib=rb-4.0.3&w=500&q=60"
+      ],
+      material: "Natural Rose Quartz",
+      inStock: true,
+      isNew: true,
+      isFeatured: true,
+      weight: "38g",
+      dimensions: "3.5cm x 3.5cm x 2cm",
+      tags: ["rose quartz", "heart", "love", "pink", "healing"],
+      rating: 4.8,
+      reviewCount: 54,
+      createdAt: "2023-12-16T15:30:00Z"
+    },
+    {
+      id: "stone-3",
+      name: "Clear Quartz Point",
+      description: "A powerful clear quartz crystal point known as the 'Master Healer'. This crystal amplifies energy and is perfect for meditation, healing, and spiritual growth.",
+      price: 1299,
+      category: "stones",
+      images: [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+      ],
+      material: "Natural Clear Quartz",
+      inStock: true,
+      isNew: false,
+      isFeatured: true,
+      weight: "52g",
+      dimensions: "6cm x 2cm x 2cm",
+      tags: ["clear quartz", "crystal", "healing", "meditation"],
+      rating: 4.7,
+      reviewCount: 43,
+      createdAt: "2023-12-01T11:15:00Z"
+    },
+    {
+      id: "stone-4",
+      name: "Black Tourmaline Shield",
+      description: "A protective black tourmaline stone known for its powerful grounding and protective properties. Excellent for EMF protection and negative energy cleansing.",
+      price: 1699,
+      category: "stones",
+      images: [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+      ],
+      material: "Natural Black Tourmaline",
+      inStock: true,
+      isNew: false,
+      isFeatured: false,
+      weight: "63g",
+      dimensions: "5cm x 3cm x 3cm",
+      tags: ["black tourmaline", "protection", "grounding", "shield"],
+      rating: 4.6,
+      reviewCount: 39,
+      createdAt: "2023-11-28T09:45:00Z"
+    },
+    {
+      id: "stone-5",
+      name: "Citrine Abundance Stone",
+      description: "A beautiful golden citrine stone known as the merchant's stone for its ability to attract abundance and prosperity. Brings joy and positive energy.",
+      price: 2199,
+      category: "stones",
+      images: [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+      ],
+      material: "Natural Citrine",
+      inStock: true,
+      isNew: true,
+      isFeatured: false,
+      weight: "41g",
+      dimensions: "4.5cm x 3cm x 2.5cm",
+      tags: ["citrine", "abundance", "prosperity", "golden", "joy"],
+      rating: 4.8,
+      reviewCount: 51,
+      createdAt: "2023-12-08T14:20:00Z"
+    },
+    {
+      id: "stone-6",
+      name: "Labradorite Flash",
+      description: "Mesmerizing labradorite with stunning blue and green flashes. Known as the stone of transformation and magic, perfect for enhancing intuition and psychic abilities.",
+      price: 3299,
+      category: "stones",
+      images: [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+      ],
+      material: "Natural Labradorite",
+      inStock: false,
+      isNew: false,
+      isFeatured: false,
+      weight: "78g",
+      dimensions: "6cm x 4cm x 3cm",
+      tags: ["labradorite", "transformation", "magic", "intuition", "flash"],
+      rating: 4.9,
+      reviewCount: 62,
+      createdAt: "2023-11-20T16:30:00Z"
     }
   ];

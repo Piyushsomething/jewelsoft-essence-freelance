@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <p className="mb-6">Last updated: April 1, 2023</p>
           
-          <p>At Silver Elegance, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or make a purchase.</p>
+          <p>At Parshavexport, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or make a purchase.</p>
           
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">Information We Collect</h2>
           
@@ -48,7 +48,7 @@ const PrivacyPolicy = () => {
           
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">Contact Us</h2>
           <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-          <p>Email: privacy@silverelegance.com<br />
+          <p>Email: info@parshavexports.com<br />
           Phone: +91 123-456-7890<br />
           Address: 123 Silver Street, New Delhi, India</p>
         </div>

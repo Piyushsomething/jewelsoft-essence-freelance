@@ -334,7 +334,7 @@ const ProductDetail = () => {
               <div className="prose dark:prose-invert max-w-none">
                 <p>{product.description}</p>
                 <p>
-                  Each piece of jewelry at JewelSoft is meticulously handcrafted by skilled artisans 
+                  Each piece of jewelry at Parshavexport is meticulously handcrafted by skilled artisans 
                   using traditional techniques passed down through generations. Every detail is 
                   carefully considered to create a piece that is not only beautiful but also durable 
                   and comfortable to wear.

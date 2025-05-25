@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Mail, Phone, MapPin, SendHorizontal } from "lucide-react";
 import Layout from "@/components/layout/Layout";
@@ -56,7 +57,7 @@ const Contact = () => {
       <section className="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://source.unsplash.com/random/1920x1080/?silver,jewelry,store"
+            src="https://images.pexels.com/photos/28248427/pexels-photo-28248427/free-photo-of-vintage-british-telecom-telephone-cream.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt="Contact Us"
             className="w-full h-full object-cover"
           />
@@ -86,16 +87,32 @@ const Contact = () => {
               </p>
               
               <div className="space-y-6">
+                {/* India Office */}
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4 shrink-0">
                     <MapPin className="h-5 w-5 text-gold" />
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Our Store</h3>
+                    <h3 className="font-medium mb-1">India Office</h3>
                     <p className="text-muted-foreground">
-                      MSB ka Rasta, Jhoro Bazar<br />
+                      MSB ka Rasta, Jhori Bazar<br />
                       Jaipur, Rajasthan, 302003<br />
                       India
+                    </p>
+                  </div>
+                </div>
+
+                {/* USA Office */}
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4 shrink-0">
+                    <MapPin className="h-5 w-5 text-gold" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">USA Office</h3>
+                    <p className="text-muted-foreground">
+                      1322 Lantern Faith Dr<br />
+                      Wylie, TX 75098<br />
+                      United States
                     </p>
                   </div>
                 </div>

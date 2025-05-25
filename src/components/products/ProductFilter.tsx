@@ -161,6 +161,21 @@ const ProductFilter = ({
     // Simply prevents form submission, the filter is already updated on input change
   };
 
+  // Category display names for better UX
+  const getCategoryDisplayName = (category: string) => {
+    switch (category) {
+      case "all": return "All Categories";
+      case "rings": return "Rings";
+      case "necklaces": return "Necklaces";
+      case "earrings": return "Earrings";
+      case "bracelets": return "Bracelets";
+      case "anklets": return "Anklets";
+      case "pendants": return "Pendants";
+      case "stones": return "Stones";
+      default: return category.charAt(0).toUpperCase() + category.slice(1);
+    }
+  };
+
   return (
     <div className="md:h-auto md:overflow-visible flex flex-col h-[calc(100vh-4rem)]">
       {/* Mobile header with search and sort - fixed position */}
@@ -227,9 +242,9 @@ const ProductFilter = ({
                       />
                       <label
                         htmlFor={`category-${category}`}
-                        className="ml-2 text-sm capitalize cursor-pointer"
+                        className="ml-2 text-sm cursor-pointer"
                       >
-                        {category === "all" ? "All Categories" : category}
+                        {getCategoryDisplayName(category)}
                       </label>
                     </div>
                   ))}

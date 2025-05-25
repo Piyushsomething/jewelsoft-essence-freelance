@@ -13,8 +13,10 @@ const Hero = () => {
         transition={{ duration: 2 }}
       >
         <img
-          src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+          // src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+          src="https://images.unsplash.com/photo-1693213085235-ea6deadf8cee?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Luxury Jewelry"
+
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -29,7 +31,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            Timeless Elegance in <span className="text-gold">Silver</span>
+            Elegance in <span className="text-gold">Silver & Stone</span>
           </motion.h1>
           
           <motion.p 

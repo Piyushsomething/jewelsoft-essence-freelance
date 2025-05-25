@@ -25,7 +25,8 @@ export type ProductCategory =
   | 'earrings' 
   | 'bracelets'
   | 'anklets'
-  | 'pendants';
+  | 'pendants'
+  | 'stones';
 
 export interface ProductFilter {
   category?: ProductCategory | 'all';

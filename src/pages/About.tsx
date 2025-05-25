@@ -9,7 +9,7 @@ const About = () => {
       <section className="relative h-[50vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://source.unsplash.com/random/1920x1080/?jewelry,workshop"
+            src="https://images.pexels.com/photos/23534159/pexels-photo-23534159/free-photo-of-olivetti-lettera-35-typewriter.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt="Jewelry Workshop"
             className="w-full h-full object-cover"
           />
@@ -36,7 +36,7 @@ const About = () => {
                 Parshav Exports was founded with a simple mission: to create exquisite silver jewelry that honors traditional craftsmanship while embracing modern aesthetics. What began as a small workshop in Jaipur has grown into a beloved brand known for its attention to detail and commitment to quality.
               </p>
               <p className="mb-4">
-                Our founder, Piyush, discovered his passion for silversmithing during his travels across rural India, where he was captivated by the intricate techniques passed down through generations. Inspired by this rich heritage, he assembled a team of skilled artisans dedicated to preserving these traditions while infusing them with contemporary style.
+                Our founder, Sanjay Jain, discovered his passion for silversmithing during his travels across rural India, where he was captivated by the intricate techniques passed down through generations. Inspired by this rich heritage, he assembled a team of skilled artisans dedicated to preserving these traditions while infusing them with contemporary style.
               </p>
               <p>
                 Today, Parshav Exports continues to honor its roots while evolving with the times. Each piece in our collection represents our journey and our commitment to creating jewelry that becomes part of your personal story.
@@ -145,16 +145,16 @@ const About = () => {
       {/* Meet Our Team - Modified to show only the creator */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          {/* <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="font-playfair text-3xl font-bold mb-4">About the Creator</h2>
             <p>
               Meet the developer behind the Parshav Exports website.
             </p>
-          </div>
+          </div> */}
           
           <div className="flex justify-center">
             {/* Only Piyush as Creator */}
-            <div className="text-center max-w-md">
+            {/* <div className="text-center max-w-md">
               <div className="aspect-square rounded-full overflow-hidden mb-4 relative group w-48 h-48 mx-auto">
                 <img
                   src="https://source.unsplash.com/random/200x200/?portrait,man&sig=11"
@@ -173,7 +173,7 @@ const About = () => {
                 <a href="https://linkedin.com/in/piyush4for" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">linkedin.com/in/piyush4for</a>
                 <a href="https://github.com/piyush4for" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">github.com/piyush4for</a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

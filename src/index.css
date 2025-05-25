@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -25,7 +25,7 @@
     --muted-foreground: 0 0% 45%;
 
     --accent: 0 0% 92%;
-    --accent-foreground: 0 0% 12%;
+    /* --accent-foreground: 0 0% 12%; */
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -72,12 +72,17 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground font-montserrat;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-playfair;
   }
 }
@@ -86,44 +91,44 @@
   .container-custom {
     @apply px-4 md:px-6 lg:px-8 mx-auto max-w-7xl;
   }
-  
+
   .hover-shine {
     @apply relative overflow-hidden;
   }
-  
+
   .hover-shine::before {
     @apply content-[''] absolute top-0 left-[-100%] z-10 w-1/2 h-full bg-white/20 skew-x-[-25deg];
     transition: left 0.8s;
   }
-  
+
   .hover-shine:hover::before {
     @apply left-[125%];
   }
-  
+
   .btn-primary {
     @apply bg-gold text-darkText hover:bg-gold/90 transition-colors px-6 py-3;
   }
-  
+
   .btn-secondary {
     @apply bg-transparent border border-gold text-gold hover:bg-gold/10 transition-colors px-6 py-3;
   }
-  
+
   .product-grid {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-standard;
   }
-  
+
   .link-hover {
     @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gold hover:after:w-full after:transition-all after:duration-300;
   }
-  
+
   .product-card {
     @apply bg-card border border-border rounded-md overflow-hidden transition-all duration-300 hover:shadow-md dark:hover:shadow-gold/10;
   }
-  
+
   .nav-link {
     @apply text-foreground hover:text-gold transition-colors;
   }
-  
+
   .slider-thumb {
     width: 20px !important;
     height: 20px !important;
@@ -134,11 +139,11 @@
   .float-animation {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .pulse-animation {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   @keyframes float {
     0% {
       transform: translateY(0px);
@@ -150,9 +155,10 @@
       transform: translateY(0px);
     }
   }
-  
+
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {

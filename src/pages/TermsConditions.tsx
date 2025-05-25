@@ -12,13 +12,13 @@ const TermsConditions = () => {
           <p className="mb-6">Last updated: April 1, 2023</p>
           
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">1. Introduction</h2>
-          <p>Welcome to Silver Elegance. These Terms and Conditions govern your use of our website and services, including the purchase of products. By accessing our website or using our services, you agree to be bound by these Terms and Conditions.</p>
+          <p>Welcome to Parshavexport. These Terms and Conditions govern your use of our website and services, including the purchase of products. By accessing our website or using our services, you agree to be bound by these Terms and Conditions.</p>
           
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">2. Definitions</h2>
-          <p>"Company", "we", "us" or "our" refers to Silver Elegance.</p>
+          <p>"Company", "we", "us" or "our" refers to Parshavexport.</p>
           <p>"Customer", "you" or "your" refers to the person accessing or using our website and services.</p>
           <p>"Products" refers to the jewelry items and accessories sold on our website.</p>
-          <p>"Website" refers to Silver Elegance's online platform accessible at [website URL].</p>
+          <p>"Website" refers to Parshavexport's online platform accessible at [website URL].</p>
           
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">3. Acceptance of Terms</h2>
           <p>By accessing our website and making a purchase, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our website or services.</p>
@@ -29,14 +29,14 @@ const TermsConditions = () => {
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">5. Ordering and Payment</h2>
           <p>All orders are subject to acceptance and availability. We reserve the right to refuse any order without giving reasons. Payment must be made in full before the dispatch of products.</p>
           
-          <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">6. Intellectual Property</h2>
-          <p>All content on our website, including text, graphics, logos, images, and software, is the property of Silver Elegance and is protected by copyright and other intellectual property laws. You may not use, reproduce, distribute, or create derivative works from our content without our express written consent.</p>
+          {/* <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">6. Intellectual Property</h2>
+          <p>All content on our website, including text, graphics, logos, images, and software, is the property of Parshavexport and is protected by copyright and other intellectual property laws. You may not use, reproduce, distribute, or create derivative works from our content without our express written consent.</p> */}
           
-          <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">7. Governing Law</h2>
+          <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">6. Governing Law</h2>
           <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
           
-          <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">8. Contact Information</h2>
-          <p>If you have any questions about these Terms and Conditions, please contact us at support@silverelegance.com or through our Contact page.</p>
+          <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">7. Contact Information</h2>
+          <p>If you have any questions about these Terms and Conditions, please contact us at info@parshavexports.com or through our Contact page.</p>
         </div>
       </div>
     </Layout>

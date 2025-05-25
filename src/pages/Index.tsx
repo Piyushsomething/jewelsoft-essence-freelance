@@ -4,7 +4,7 @@ import Hero from "@/components/home/Hero";
 import CategoryHighlight from "@/components/home/CategoryHighlight";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import NewArrivals from "@/components/home/NewArrivals";
-import Testimonials from "@/components/home/Testimonials";
+// import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
 import AnimatedShowcase from "@/components/home/AnimatedShowcase";
 import AnimatedBackground from "@/components/home/AnimatedBackground";
@@ -79,7 +79,7 @@ const Index = () => {
         </div>
       </div>
       <NewArrivals />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Newsletter />
     </Layout>
   );
