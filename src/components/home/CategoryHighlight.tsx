@@ -28,7 +28,7 @@ const categories = [
   {
     id: "stones",
     name: "Stones",
-    image: "https://images.unsplash.com/photo-1740819920986-8462590eccdb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/products/stones/stone-6.jpeg",
     description: "Healing crystals and precious stones",
   },
 ];

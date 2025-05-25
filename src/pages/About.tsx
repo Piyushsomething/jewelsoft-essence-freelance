@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const About = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  // Workshop images - replace these with your actual image URLs
+
   const workshopImages = [
            "/images/story/1.jpeg",
            "/images/story/2.jpeg",
@@ -65,6 +65,26 @@ const About = () => {
           <p className="text-lg max-w-2xl">
             At Parshav Exports, we blend traditional craftsmanship with contemporary design to create timeless silver jewelry that tells a story.
           </p>
+        </div>
+
+        {/* Founder Image - Bottom Right Corner of Hero */}
+        <div className="absolute bottom-16 right-6 z-20 hidden md:block">
+          <div className="relative group">
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-md overflow-hidden border-4 border-gold shadow-xl transition-transform duration-300 group-hover:scale-150 origin-bottom-right">
+              <img
+                src="/images/story/1.jpeg"
+                alt="Sanjay Jain - Founder"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Text Description Below Image */}
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2">
+              <div className="bg-white/90 backdrop-blur-sm text-dark text-xs px-3 py-1 rounded-md shadow-lg whitespace-nowrap">
+                <p className="font-medium">Founder</p>
+                <p className="text-xs opacity-80">Sanjay Jain</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       
