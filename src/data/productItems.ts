@@ -30,8 +30,8 @@ export const products: Product[] = [
       price: 3499,
       category: "necklaces",
       images: [
-        "https://images.unsplash.com/photo-1680068098868-0f5548165d3d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&w=500&q=60"
+          "/images/products/necklaces/necklace-1.jpeg",
+        "/images/products/necklaces/necklace-2.jpeg",
       ],
       material: "Sterling Silver with Gold Plating",
       inStock: true,
@@ -51,8 +51,8 @@ export const products: Product[] = [
       price: 1299,
       category: "earrings",
       images: [
-        "https://images.unsplash.com/photo-1714733831162-0a6e849141be?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1713004539634-a6694a83f3d9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            "/images/products/earrings/ear-3.jpeg",
+            "/images/products/earrings/ear-4.jpeg",
       ],
       material: "Pure Silver",
       inStock: true,
@@ -72,8 +72,8 @@ export const products: Product[] = [
       price: 1899,
       category: "bracelets",
       images: [
-         "/images/products/bracelets/sb-1.jpg",
-        "/images/products/bracelets/sb-2.jpg", 
+         "/images/products/bracelets/sb-1.png",
+        "/images/products/bracelets/sb-2.jpeg", 
       ],
       material: "Sterling Silver",
       inStock: true,
@@ -93,7 +93,7 @@ export const products: Product[] = [
       price: 899,
       category: "anklets",
       images: [
-          "/images/products/anklets/anklet-1.jpg", 
+          "/images/products/anklets/anklet-1.png", 
       ],
       material: "Silver with Pearl",
       inStock: true,
@@ -113,7 +113,7 @@ export const products: Product[] = [
       price: 1499,
       category: "pendants",
       images: [
-          "/images/products/pendants/pendant-1.jpg", 
+          "/images/products/pendants/pendant-1.jpeg", 
       ],
       material: "Sterling Silver with Gemstones",
       inStock: true,
@@ -153,8 +153,7 @@ export const products: Product[] = [
       price: 2799,
       category: "necklaces",
       images: [
-        "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&w=500&q=60"
+        "images/products/necklaces/necklace-6.png",
       ],
       material: "Sterling Silver",
       inStock: true,
@@ -174,8 +173,8 @@ export const products: Product[] = [
       price: 1599,
       category: "earrings",
       images: [
-        "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b42?ixlib=rb-4.0.3&w=500&q=60"
+         "/images/products/earrings/ear-2.jpeg",
+         "/images/products/earrings/ear-4.jpeg",
       ],
       material: "Oxidized Silver",
       inStock: true,
@@ -195,7 +194,7 @@ export const products: Product[] = [
       price: 2199,
       category: "bracelets",
       images: [
-         "/images/products/bracelets/sb-4.jpg",
+         "/images/products/bracelets/sb-3.jpeg",
       ],
       material: "Sterling Silver with Gold Plating",
       inStock: true,

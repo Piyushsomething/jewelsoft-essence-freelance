@@ -4,25 +4,25 @@ const categories = [
   {
     id: "rings",
     name: "Rings",
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image: "/images/products/rings/ring-4.jpeg",
     description: "Exquisite rings for every occasion",
   },
   {
     id: "necklaces",
     name: "Necklaces",
-    image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image: "images/products/necklaces/necklace-5.png",
     description: "Stunning necklaces that make a statement",
   },
   {
     id: "earrings",
     name: "Earrings",
-    image: "https://images.unsplash.com/photo-1714733831162-0a6e849141be?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/products/earrings/ear-1.jpeg",
     description: "Beautiful earrings for everyday elegance",
   },
   {
     id: "bracelets",
     name: "Bracelets",
-    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image: "/images/products/bracelets/sb-3.jpeg",
     description: "Handcrafted bracelets that captivate",
   },
   {

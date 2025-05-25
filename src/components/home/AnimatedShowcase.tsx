@@ -23,9 +23,11 @@ const AnimatedShowcase = () => {
       name: "Necklaces",
       description: "Stunning necklaces that make a statement",
       images: [
-        "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&w=400&q=80",
-        "https://images.unsplash.com/photo-1680068098868-0f5548165d3d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&w=400&q=80"
+           "images/products/necklaces/necklace-5.png",
+           "images/products/necklaces/necklace-6.png",
+           "images/products/necklaces/necklace-7.png",
+
+
       ]
     },
     {
@@ -33,9 +35,9 @@ const AnimatedShowcase = () => {
       name: "Earrings",
       description: "Beautiful earrings for everyday elegance",
       images: [
-        "https://images.unsplash.com/photo-1714733831162-0a6e849141be?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1713004539634-a6694a83f3d9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&w=400&q=80"
+         "/images/products/earrings/ear-1.jpeg",
+        "/images/products/earrings/ear-2.jpeg", 
+        "/images/products/earrings/ear-3.jpeg",
       ]
     },
     {
@@ -43,9 +45,9 @@ const AnimatedShowcase = () => {
       name: "Bracelets",
       description: "Handcrafted bracelets that captivate",
       images: [
-         "/images/products/bracelets/sb-1.jpg",
-        "/images/products/bracelets/sb-2.jpg", 
-        "/images/products/bracelets/sb-3.jpg",
+         "/images/products/bracelets/sb-1.png",
+        "/images/products/bracelets/sb-2.jpeg", 
+        "/images/products/bracelets/sb-3.jpeg",
       ]
     },
     {
