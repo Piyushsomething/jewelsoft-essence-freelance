@@ -9,7 +9,7 @@ const TermsConditions = () => {
         <h1 className="font-playfair text-3xl md:text-4xl font-bold mb-8">Terms & Conditions</h1>
         
         <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p className="mb-6">Last updated: April 1, 2023</p>
+          <p className="mb-6">Last updated: May 2025</p>
           
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">1. Introduction</h2>
           <p>Welcome to Parshavexport. These Terms and Conditions govern your use of our website and services, including the purchase of products. By accessing our website or using our services, you agree to be bound by these Terms and Conditions.</p>

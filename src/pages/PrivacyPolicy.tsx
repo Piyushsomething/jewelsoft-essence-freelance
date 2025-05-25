@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
         <h1 className="font-playfair text-3xl md:text-4xl font-bold mb-8">Privacy Policy</h1>
         
         <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p className="mb-6">Last updated: April 1, 2023</p>
+          <p className="mb-6">Last updated: May 2025</p>
           
           <p>At Parshavexport, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or make a purchase.</p>
           
@@ -49,8 +49,8 @@ const PrivacyPolicy = () => {
           <h2 className="font-playfair text-2xl font-semibold mt-8 mb-4">Contact Us</h2>
           <p>If you have any questions about this Privacy Policy, please contact us at:</p>
           <p>Email: info@parshavexports.com<br />
-          Phone: +91 123-456-7890<br />
-          Address: 123 Silver Street, New Delhi, India</p>
+          Phone: +91 9660622062<br />
+          Address: MSB ka Rasta, Jhoro Bazar,Jaipur, Rajasthan, 302003 India</p>
         </div>
       </div>
     </Layout>
