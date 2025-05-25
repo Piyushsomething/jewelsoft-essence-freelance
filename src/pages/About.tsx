@@ -72,7 +72,7 @@ const About = () => {
           <div className="relative group">
             <div className="w-24 h-24 md:w-32 md:h-32 rounded-md overflow-hidden border-4 border-gold shadow-xl transition-transform duration-300 group-hover:scale-150 origin-bottom-right">
               <img
-                src="/images/story/1.jpeg"
+                src="/images/founder/founder.jpeg"
                 alt="Sanjay Jain - Founder"
                 className="w-full h-full object-cover"
               />
