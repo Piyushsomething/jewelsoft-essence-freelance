@@ -1,8 +1,50 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const About = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Workshop images - replace these with your actual image URLs
+  const workshopImages = [
+           "/images/story/1.jpeg",
+           "/images/story/2.jpeg",
+           "/images/story/3.jpeg",
+           "/images/story/4.jpeg",
+           "/images/story/5.jpeg",
+           "/images/story/6.jpeg",
+           "/images/story/7.jpeg",
+  ];
+
+  const imageDescriptions = [
+    "Traditional Workshop Setup",
+    "Handcrafting Process", 
+    "Master Artisans at Work",
+    "Quality Control",
+    "Precision Stone Setting",
+    "Women Artisans",
+    "Design Process",
+    "Traditional Techniques"
+  ];
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % workshopImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [workshopImages.length]);
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + workshopImages.length) % workshopImages.length);
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % workshopImages.length);
+  };
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -26,7 +68,7 @@ const About = () => {
         </div>
       </section>
       
-      {/* Our Journey */}
+      {/* Our Journey with Workshop Carousel */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -43,13 +85,62 @@ const About = () => {
               </p>
             </div>
             
+            {/* Workshop Carousel */}
             <div className="relative">
-              <img
-                src="https://source.unsplash.com/random/600x800/?silver,artisan"
-                alt="Silversmith at work"
-                className="rounded-md shadow-lg w-full h-auto"
-              />
-              <div className="absolute -bottom-6 -left-6 h-24 w-24 bg-gold rounded-full hidden md:block" />
+              <div className="relative overflow-hidden rounded-md shadow-lg">
+                <div className="aspect-[4/3] bg-muted">
+                  <img
+                    src={workshopImages[currentImageIndex]}
+                    alt={imageDescriptions[currentImageIndex]}
+                    className="w-full h-full object-cover transition-opacity duration-500"
+                  />
+                </div>
+                
+                {/* Navigation Arrows */}
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-colors"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-colors"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+                
+                {/* Image Counter/Description */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-md">
+                    <p className="text-sm font-medium">{imageDescriptions[currentImageIndex]}</p>
+                    <p className="text-xs opacity-80">
+                      {currentImageIndex + 1} of {workshopImages.length}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Thumbnail Dots */}
+              <div className="flex justify-center gap-2 mt-4">
+                {workshopImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentImageIndex
+                        ? "bg-gold"
+                        : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    }`}
+                    onClick={() => setCurrentImageIndex(index)}
+                    aria-label={`View image ${index + 1}`}
+                  />
+                ))}
+              </div>
+              
+              {/* Decorative Element */}
+              <div className="absolute -bottom-6 -left-6 h-24 w-24 bg-gold rounded-full hidden md:block opacity-20" />
             </div>
           </div>
         </div>
@@ -138,42 +229,6 @@ const About = () => {
                 We strive to create not just beautiful jewelry, but exceptional experiences. From personalized service to thoughtful packaging, we aim to exceed your expectations at every touchpoint.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Meet Our Team - Modified to show only the creator */}
-      <section className="py-16 md:py-24">
-        <div className="container-custom">
-          {/* <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="font-playfair text-3xl font-bold mb-4">About the Creator</h2>
-            <p>
-              Meet the developer behind the Parshav Exports website.
-            </p>
-          </div> */}
-          
-          <div className="flex justify-center">
-            {/* Only Piyush as Creator */}
-            {/* <div className="text-center max-w-md">
-              <div className="aspect-square rounded-full overflow-hidden mb-4 relative group w-48 h-48 mx-auto">
-                <img
-                  src="https://source.unsplash.com/random/200x200/?portrait,man&sig=11"
-                  alt="Piyush"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <h3 className="font-playfair text-xl font-bold mb-1">Piyush</h3>
-              <p className="text-muted-foreground mb-3">Creator & Developer</p>
-              <p className="text-sm mb-4">
-                Full Stack Developer @LYZR.AI | Ex WESEE (Indian Naval HQ) | Ex HashedIn by Deloitte | AI Application developer
-              </p>
-              <div className="flex flex-col gap-2 items-center">
-                <a href="tel:+918570936103" className="text-gold hover:underline">+91 8570936103</a>
-                <a href="mailto:piyush4for@gmail.com" className="text-gold hover:underline">piyush4for@gmail.com</a>
-                <a href="https://linkedin.com/in/piyush4for" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">linkedin.com/in/piyush4for</a>
-                <a href="https://github.com/piyush4for" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">github.com/piyush4for</a>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

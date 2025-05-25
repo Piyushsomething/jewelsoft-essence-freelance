@@ -95,7 +95,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium mb-1">India Office</h3>
                     <p className="text-muted-foreground">
-                      MSB ka Rasta, Jhori Bazar<br />
+                      MSB ka Rasta, Johri Bazar<br />
                       Jaipur, Rajasthan, 302003<br />
                       India
                     </p>

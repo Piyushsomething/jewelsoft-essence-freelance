@@ -112,7 +112,7 @@ const Footer = () => {
             <div>
               <h4 className="text-slate-300 font-medium mb-1">India Office</h4>
               <address className="not-italic">
-                <p className="text-slate-400">MSB ka Rasta, Jhoro Bazar,</p>
+                <p className="text-slate-400">MSB ka Rasta, Johri Bazar,</p>
                 <p className="text-slate-400">Jaipur, Rajasthan, 302003</p>
                 <p className="text-slate-400">India</p>
               </address>

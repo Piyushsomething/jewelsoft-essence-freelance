@@ -10,9 +10,7 @@ export const products: Product[] = [
       discountPrice: 2499,
       category: "rings",
       images: [
-        "https://images.unsplash.com/photo-1609587312208-cea744558a14?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1608632298798-41a075f33a86?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1608632298798-41a075f33a86?ixlib=rb-4.0.3&w=500&q=60",
+        "/images/products/rings/silver_ring-1.jpg",
       ],
       material: "Sterling Silver",
       inStock: true,
@@ -32,7 +30,7 @@ export const products: Product[] = [
       price: 3499,
       category: "necklaces",
       images: [
-        "https://images.unsplash.com/photo-1526355430414-a67999cb98e8?ixlib=rb-4.0.3&w=500&q=60",
+        "https://images.unsplash.com/photo-1680068098868-0f5548165d3d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&w=500&q=60"
       ],
       material: "Sterling Silver with Gold Plating",
@@ -53,8 +51,8 @@ export const products: Product[] = [
       price: 1299,
       category: "earrings",
       images: [
-        "https://images.unsplash.com/photo-1619259942293-f8664710498f?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1630019852942-f89202989a61?ixlib=rb-4.0.3&w=500&q=60"
+        "https://images.unsplash.com/photo-1714733831162-0a6e849141be?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1713004539634-a6694a83f3d9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       ],
       material: "Pure Silver",
       inStock: true,
@@ -74,8 +72,8 @@ export const products: Product[] = [
       price: 1899,
       category: "bracelets",
       images: [
-        "https://images.unsplash.com/photo-1635349052244-2c9145c5ef84?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&w=500&q=60"
+         "/images/products/bracelets/sb-1.jpg",
+        "/images/products/bracelets/sb-2.jpg", 
       ],
       material: "Sterling Silver",
       inStock: true,
@@ -95,8 +93,7 @@ export const products: Product[] = [
       price: 899,
       category: "anklets",
       images: [
-        "https://source.unsplash.com/random/300x300/?silver,anklet&sig=80",
-        "https://source.unsplash.com/random/300x300/?silver,anklet&sig=81"
+          "/images/products/anklets/anklet-1.jpg", 
       ],
       material: "Silver with Pearl",
       inStock: true,
@@ -116,8 +113,7 @@ export const products: Product[] = [
       price: 1499,
       category: "pendants",
       images: [
-        "https://source.unsplash.com/random/300x300/?silver,pendant&sig=100",
-        "https://source.unsplash.com/random/300x300/?silver,pendant&sig=101"
+          "/images/products/pendants/pendant-1.jpg", 
       ],
       material: "Sterling Silver with Gemstones",
       inStock: true,
@@ -137,8 +133,7 @@ export const products: Product[] = [
       price: 1299,
       category: "rings",
       images: [
-        "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.0.3&w=500&q=60"
+        "/images/products/rings/silver_ring-2.jpg"
       ],
       material: "Pure Silver",
       inStock: false,
@@ -200,8 +195,7 @@ export const products: Product[] = [
       price: 2199,
       category: "bracelets",
       images: [
-        "https://images.unsplash.com/photo-1573408301828-9219d9e3c843?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1626784215021-2e895cd330e9?ixlib=rb-4.0.3&w=500&q=60"
+         "/images/products/bracelets/sb-4.jpg",
       ],
       material: "Sterling Silver with Gold Plating",
       inStock: true,
@@ -223,8 +217,7 @@ export const products: Product[] = [
       discountPrice: 2999,
       category: "stones",
       images: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+         "/images/products/stones/stone-1.jpg",
       ],
       material: "Natural Amethyst",
       inStock: true,
@@ -244,8 +237,7 @@ export const products: Product[] = [
       price: 1899,
       category: "stones",
       images: [
-        "https://images.unsplash.com/photo-1518051803018-40988b2df310?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1518051803018-40988b2df310?ixlib=rb-4.0.3&w=500&q=60"
+        "/images/products/stones/stone-2.jpg",
       ],
       material: "Natural Rose Quartz",
       inStock: true,
@@ -265,8 +257,7 @@ export const products: Product[] = [
       price: 1299,
       category: "stones",
       images: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+        "/images/products/stones/stone-3.jpg",
       ],
       material: "Natural Clear Quartz",
       inStock: true,
@@ -286,8 +277,7 @@ export const products: Product[] = [
       price: 1699,
       category: "stones",
       images: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+        "/images/products/stones/stone-4.jpg",
       ],
       material: "Natural Black Tourmaline",
       inStock: true,
@@ -300,27 +290,27 @@ export const products: Product[] = [
       reviewCount: 39,
       createdAt: "2023-11-28T09:45:00Z"
     },
-    {
-      id: "stone-5",
-      name: "Citrine Abundance Stone",
-      description: "A beautiful golden citrine stone known as the merchant's stone for its ability to attract abundance and prosperity. Brings joy and positive energy.",
-      price: 2199,
-      category: "stones",
-      images: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
-      ],
-      material: "Natural Citrine",
-      inStock: true,
-      isNew: true,
-      isFeatured: false,
-      weight: "41g",
-      dimensions: "4.5cm x 3cm x 2.5cm",
-      tags: ["citrine", "abundance", "prosperity", "golden", "joy"],
-      rating: 4.8,
-      reviewCount: 51,
-      createdAt: "2023-12-08T14:20:00Z"
-    },
+    // {
+    //   id: "stone-5",
+    //   name: "Citrine Abundance Stone",
+    //   description: "A beautiful golden citrine stone known as the merchant's stone for its ability to attract abundance and prosperity. Brings joy and positive energy.",
+    //   price: 2199,
+    //   category: "stones",
+    //   images: [
+    //     "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
+    //     "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+    //   ],
+    //   material: "Natural Citrine",
+    //   inStock: true,
+    //   isNew: true,
+    //   isFeatured: false,
+    //   weight: "41g",
+    //   dimensions: "4.5cm x 3cm x 2.5cm",
+    //   tags: ["citrine", "abundance", "prosperity", "golden", "joy"],
+    //   rating: 4.8,
+    //   reviewCount: 51,
+    //   createdAt: "2023-12-08T14:20:00Z"
+    // },
     {
       id: "stone-6",
       name: "Labradorite Flash",
@@ -328,8 +318,7 @@ export const products: Product[] = [
       price: 3299,
       category: "stones",
       images: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=500&q=60"
+        "/images/products/stones/stone-5.jpg",
       ],
       material: "Natural Labradorite",
       inStock: false,

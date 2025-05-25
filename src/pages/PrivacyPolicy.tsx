@@ -50,7 +50,7 @@ const PrivacyPolicy = () => {
           <p>If you have any questions about this Privacy Policy, please contact us at:</p>
           <p>Email: info@parshavexports.com<br />
           Phone: +91 9660622062<br />
-          Address: MSB ka Rasta, Jhoro Bazar,Jaipur, Rajasthan, 302003 India</p>
+          Address: MSB ka Rasta, Johri Bazar,Jaipur, Rajasthan, 302003 India</p>
         </div>
       </div>
     </Layout>
