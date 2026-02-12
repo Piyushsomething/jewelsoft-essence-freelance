@@ -22,8 +22,12 @@ const MobileMenu = ({ isOpen, onClose, links }: MobileMenuProps) => {
   return (
     <div className="fixed inset-0 bg-background z-50 overflow-y-auto">
       <div className="container-custom py-4 flex justify-between items-center">
-        <Link to="/" className="font-playfair text-2xl font-bold" onClick={onClose}>
-          
+        <Link to="/" className="flex items-center" onClick={onClose}>
+          <img
+            src="/images/Parshav_exports_Logo.png"
+            alt="Parshav Exports"
+            className="h-14 w-auto object-contain"
+          />
         </Link>
         <Button
           variant="ghost"
@@ -34,7 +38,6 @@ const MobileMenu = ({ isOpen, onClose, links }: MobileMenuProps) => {
           <X className="h-6 w-6" />
         </Button>
       </div>
-      Parshavexport
       <nav className="container-custom mt-8">
         <ul className="space-y-6">
           {links.map((link) => (

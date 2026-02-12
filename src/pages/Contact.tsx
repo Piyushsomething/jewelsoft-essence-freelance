@@ -16,27 +16,27 @@ const Contact = () => {
     subject: "",
     message: "",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!form.name || !form.email || !form.message) {
       toast.error("Please fill in all required fields");
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       toast.success("Your message has been sent! We'll get back to you soon.");
@@ -50,11 +50,11 @@ const Contact = () => {
       setIsSubmitting(false);
     }, 1500);
   };
-  
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden">
+      <section className="relative h-[40vh] min-h-[712px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.pexels.com/photos/28248427/pexels-photo-28248427/free-photo-of-vintage-british-telecom-telephone-cream.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -63,17 +63,17 @@ const Contact = () => {
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
-        
+
         <div className="container-custom relative z-10 text-lightText">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          <h1 className="font-playfair text-4xl md:text-7xl font-bold mb-4 leading-tight">
             Contact Us
           </h1>
-          <p className="text-lg max-w-2xl">
+          <p className="text-xl md:text-2xl max-w-2xl">
             We're here to help with any questions you might have about our products or services.
           </p>
         </div>
       </section>
-      
+
       {/* Contact Content */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
@@ -82,10 +82,10 @@ const Contact = () => {
             <div>
               <h2 className="font-playfair text-3xl font-bold mb-6">Get in Touch</h2>
               <p className="text-muted-foreground mb-8">
-                We'd love to hear from you. Whether you have a question about our products, 
+                We'd love to hear from you. Whether you have a question about our products,
                 custom orders, or anything else, our team is ready to assist you.
               </p>
-              
+
               <div className="space-y-6">
                 {/* India Office */}
                 <div className="flex items-start">
@@ -116,7 +116,7 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4 shrink-0">
                     <Mail className="h-5 w-5 text-gold" />
@@ -130,7 +130,7 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4 shrink-0">
                     <Phone className="h-5 w-5 text-gold" />
@@ -147,7 +147,7 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Store Hours */}
               <div className="mt-12">
                 <h3 className="font-playfair text-xl font-bold mb-4">Store Hours</h3>
@@ -159,12 +159,12 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Contact Form */}
             <div>
               <div className="bg-card border border-border rounded-md p-6 md:p-8">
                 <h2 className="font-playfair text-2xl font-bold mb-6">Send Us a Message</h2>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -179,7 +179,7 @@ const Contact = () => {
                         required
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="email">
                         Email Address <span className="text-destructive">*</span>
@@ -194,7 +194,7 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone Number</Label>
@@ -206,7 +206,7 @@ const Contact = () => {
                         onChange={handleChange}
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="subject">Subject</Label>
                       <Input
@@ -217,7 +217,7 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message">
                       Your Message <span className="text-destructive">*</span>
@@ -231,7 +231,7 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
+
                   <Button
                     type="submit"
                     className="w-full bg-gold text-darkText hover:bg-gold/90"
