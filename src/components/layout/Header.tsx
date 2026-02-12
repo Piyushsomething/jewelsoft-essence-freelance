@@ -10,12 +10,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import MobileMenu from "./MobileMenu";
-import { 
+import {
   Sheet,
-  SheetContent, 
+  SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger 
+  SheetTrigger
 } from "@/components/ui/sheet";
 
 const navLinks = [
@@ -63,17 +63,23 @@ const Header = () => {
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-background/95 backdrop-blur-md shadow-sm" 
-          : "bg-transparent"
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-background/95 backdrop-blur-md shadow-sm"
+        : "bg-transparent"
+        }`}
     >
-      <div className="container-custom py-4 flex items-center justify-between">
+      <div className="container-custom py-3 flex items-center justify-between overflow-hidden">
         {/* Logo */}
-        <Link to="/" className="font-playfair text-2xl font-bold text-foreground">
-        Parshavexport
+        <Link to="/" className="flex items-center gap-2 md:gap-3 shrink-0">
+          <img
+            src="/images/Parshav_exports_Logo.png"
+            alt="Parshav Exports"
+            className="h-16 md:h-16 w-auto object-contain -my-2"
+          />
+          <span className="hidden md:inline font-playfair text-xl font-bold text-foreground tracking-wide">
+            PARSHAV EXPORT
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -82,9 +88,8 @@ const Header = () => {
             <Link
               key={link.href}
               to={link.href}
-              className={`nav-link ${
-                location.pathname === link.href ? "text-gold" : ""
-              }`}
+              className={`nav-link ${location.pathname === link.href ? "text-gold" : ""
+                }`}
             >
               {link.label}
             </Link>
@@ -94,8 +99,8 @@ const Header = () => {
         {/* Right Side Icons */}
         <div className="flex items-center space-x-4">
           {/* Theme Toggle */}
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="icon"
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
@@ -170,10 +175,10 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      <MobileMenu 
-        isOpen={isMobileMenuOpen} 
-        onClose={() => setIsMobileMenuOpen(false)} 
-        links={navLinks} 
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        links={navLinks}
       />
     </header>
   );

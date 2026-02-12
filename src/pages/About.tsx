@@ -6,21 +6,21 @@ import { Button } from "@/components/ui/button";
 
 const About = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
 
   const workshopImages = [
-           "/images/story/1.jpeg",
-           "/images/story/2.jpeg",
-           "/images/story/3.jpeg",
-           "/images/story/4.jpeg",
-           "/images/story/5.jpeg",
-           "/images/story/6.jpeg",
-           "/images/story/7.jpeg",
+    "/images/story/1.jpeg",
+    "/images/story/2.jpeg",
+    "/images/story/3.jpeg",
+    "/images/story/4.jpeg",
+    "/images/story/5.jpeg",
+    "/images/story/6.jpeg",
+    "/images/story/7.jpeg",
   ];
 
   const imageDescriptions = [
     "Traditional Workshop Setup",
-    "Handcrafting Process", 
+    "Handcrafting Process",
     "Master Artisans at Work",
     "Quality Control",
     "Precision Stone Setting",
@@ -48,7 +48,7 @@ const About = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center overflow-hidden">
+      <section className="relative h-[50vh] min-h-[712px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.pexels.com/photos/23534159/pexels-photo-23534159/free-photo-of-olivetti-lettera-35-typewriter.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -57,12 +57,12 @@ const About = () => {
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
-        
+
         <div className="container-custom relative z-10 text-lightText">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          <h1 className="font-playfair text-4xl md:text-7xl font-bold mb-4 leading-tight">
             Our Story
           </h1>
-          <p className="text-lg max-w-2xl">
+          <p className="text-xl md:text-2xl max-w-2xl">
             At Parshav Exports, we blend traditional craftsmanship with contemporary design to create timeless silver jewelry that tells a story.
           </p>
         </div>
@@ -87,7 +87,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Our Journey with Workshop Carousel */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
@@ -104,7 +104,7 @@ const About = () => {
                 Today, Parshav Exports continues to honor its roots while evolving with the times. Each piece in our collection represents our journey and our commitment to creating jewelry that becomes part of your personal story.
               </p>
             </div>
-            
+
             {/* Workshop Carousel */}
             <div className="relative">
               <div className="relative overflow-hidden rounded-md shadow-lg">
@@ -115,7 +115,7 @@ const About = () => {
                     className="w-full h-full object-cover transition-opacity duration-500"
                   />
                 </div>
-                
+
                 {/* Navigation Arrows */}
                 <button
                   onClick={handlePrevImage}
@@ -131,7 +131,7 @@ const About = () => {
                 >
                   <ChevronRight className="h-5 w-5" />
                 </button>
-                
+
                 {/* Image Counter/Description */}
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-md">
@@ -142,30 +142,29 @@ const About = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Thumbnail Dots */}
               <div className="flex justify-center gap-2 mt-4">
                 {workshopImages.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentImageIndex
-                        ? "bg-gold"
-                        : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                    }`}
+                    className={`w-2 h-2 rounded-full transition-colors ${index === currentImageIndex
+                      ? "bg-gold"
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                      }`}
                     onClick={() => setCurrentImageIndex(index)}
                     aria-label={`View image ${index + 1}`}
                   />
                 ))}
               </div>
-              
+
               {/* Decorative Element */}
               <div className="absolute -bottom-6 -left-6 h-24 w-24 bg-gold rounded-full hidden md:block opacity-20" />
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Our Values */}
       <section className="py-16 md:py-24 bg-light dark:bg-dark">
         <div className="container-custom">
@@ -175,7 +174,7 @@ const About = () => {
               At the heart of Parshav Exports are the principles that guide everything we do, from design to customer service.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-card border border-border rounded-md p-6 text-center">
               <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -199,7 +198,7 @@ const About = () => {
                 We believe in creating jewelry that stands the test of time. Each piece is meticulously crafted by skilled artisans using traditional techniques and the finest materials.
               </p>
             </div>
-            
+
             <div className="bg-card border border-border rounded-md p-6 text-center">
               <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -225,7 +224,7 @@ const About = () => {
                 We are committed to responsible business practices. Our materials are ethically sourced, and we work closely with suppliers who share our values of integrity and sustainability.
               </p>
             </div>
-            
+
             <div className="bg-card border border-border rounded-md p-6 text-center">
               <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -252,7 +251,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
       {/* CTA */}
       <section className="py-16 bg-gold text-darkText">
         <div className="container-custom text-center">
@@ -263,13 +262,13 @@ const About = () => {
             Discover our collection of handcrafted silver jewelry, where tradition meets contemporary design.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               asChild
               className="bg-dark text-white hover:bg-dark/90"
             >
               <Link to="/products">Explore Collection</Link>
             </Button>
-            <Button 
+            <Button
               asChild
               variant="outline"
               className="border-dark text-dark hover:bg-dark/10"

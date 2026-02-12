@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden">
+    <section className="relative h-[80vh] min-h-[712px] flex items-center overflow-hidden">
       {/* Background Image with parallax effect */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 z-0"
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -25,7 +25,7 @@ const Hero = () => {
       {/* Content with staggered animations */}
       <div className="container-custom relative z-10 text-lightText">
         <div className="max-w-2xl">
-          <motion.h1 
+          <motion.h1
             className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -33,8 +33,8 @@ const Hero = () => {
           >
             Elegance in <span className="text-gold">Silver & Stone</span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg md:text-xl opacity-90 mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,24 +42,24 @@ const Hero = () => {
           >
             Discover our exquisite collection of handcrafted silver jewelry, where tradition meets contemporary design.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             className="space-x-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            <Button 
+            <Button
               asChild
               size="lg"
               className="bg-gold text-darkText hover:bg-gold/90 shadow-lg hover:shadow-xl transition-all"
             >
               <Link to="/products">Shop Now</Link>
             </Button>
-            
-            <Button 
+
+            <Button
               asChild
-              variant="outline" 
+              variant="outline"
               size="lg"
               className="border-gold text-gold hover:bg-gold/10"
             >
