@@ -9,6 +9,7 @@ import Newsletter from "@/components/home/Newsletter";
 import AnimatedShowcase from "@/components/home/AnimatedShowcase";
 import AnimatedBackground from "@/components/home/AnimatedBackground";
 import CatalogueDownload from "@/components/home/CatalogueDownload";
+import AnimatedLogoBg from "@/components/layout/AnimatedLogoBg";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -44,12 +45,8 @@ const Index = () => {
       <AnimatedShowcase />
       <FeaturedProducts />
       <div className="py-16 md:py-24 relative overflow-hidden" style={{ backgroundColor: '#f4f0e4' }}>
-        {/* Logo Watermark */}
-        <img
-          src="/images/Parshav_exports.png"
-          alt=""
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:left-auto md:translate-x-0 md:right-16 w-60 sm:w-48 md:w-64 opacity-10 pointer-events-none select-none"
-        />
+        {/* Animated Logo Watermark - draws itself on scroll */}
+        <AnimatedLogoBg variant="dark" align="right" />
 
         <motion.div
           className="container-custom text-center relative z-10"

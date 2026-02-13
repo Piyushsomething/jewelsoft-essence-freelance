@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AnimatedLogoBg from "./AnimatedLogoBg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 text-white py-12">
-      <div className="container-custom">
+    <footer className="bg-slate-950 text-white py-12 relative overflow-hidden">
+      <AnimatedLogoBg />
+      <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">

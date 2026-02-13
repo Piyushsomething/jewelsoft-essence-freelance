@@ -12,11 +12,11 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-16">
+      <main className="min-h-screen pt-20">
         <PageTransition>{children}</PageTransition>
       </main>
       <Footer />
-      <ScrollToTopButton/>
+      <ScrollToTopButton />
     </>
   );
 };
