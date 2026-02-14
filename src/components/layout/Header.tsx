@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import MobileMenu from "./MobileMenu";
+import AnimatedHeaderLogo from "./AnimatedHeaderLogo";
 import {
   Sheet,
   SheetContent,
@@ -70,14 +71,10 @@ const Header = () => {
           : "bg-transparent"
           }`}
       >
-        <div className="container-custom py-5 flex items-center justify-between overflow-hidden">
+        <div className="container-custom py-0 flex items-center justify-between overflow-hidden h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 md:gap-3 shrink-0">
-            <img
-              src="/images/Parshav_exports_Logo.png"
-              alt="Parshav Exports"
-              className="h-20 md:h-20 w-auto object-contain -my-4 dark:invert"
-            />
+          <Link to="/" className="shrink-0">
+            <AnimatedHeaderLogo />
           </Link>
 
           {/* Desktop Navigation */}
@@ -95,7 +92,7 @@ const Header = () => {
           </nav>
 
           {/* Right Side Icons */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             {/* Theme Toggle */}
             <Button
               variant="ghost"
