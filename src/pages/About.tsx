@@ -176,77 +176,86 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card border border-border rounded-md p-6 text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-gold"
-                >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-                </svg>
+            <div className="bg-card border border-border rounded-md p-6 text-center relative overflow-hidden">
+              <img src="/images/Parshav_exports.png" alt="" className="absolute inset-0 m-auto w-44 h-44 object-contain opacity-[0.08] pointer-events-none dark:invert" />
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-gold"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                  </svg>
+                </div>
+                <h3 className="font-playfair text-xl font-bold mb-2">Quality Craftsmanship</h3>
+                <p>
+                  We believe in creating jewelry that stands the test of time. Each piece is meticulously crafted by skilled artisans using traditional techniques and the finest materials.
+                </p>
               </div>
-              <h3 className="font-playfair text-xl font-bold mb-2">Quality Craftsmanship</h3>
-              <p>
-                We believe in creating jewelry that stands the test of time. Each piece is meticulously crafted by skilled artisans using traditional techniques and the finest materials.
-              </p>
             </div>
 
-            <div className="bg-card border border-border rounded-md p-6 text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-gold"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M16.2 7.8a2 2 0 1 1-2.8 2.8" />
-                  <path d="M8 12h8" />
-                  <path d="M10.5 9.5 8 12l2.5 2.5" />
-                </svg>
+            <div className="bg-card border border-border rounded-md p-6 text-center relative overflow-hidden">
+              <img src="/images/Parshav_exports.png" alt="" className="absolute inset-0 m-auto w-44 h-44 object-contain opacity-[0.08] pointer-events-none dark:invert" />
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-gold"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M16.2 7.8a2 2 0 1 1-2.8 2.8" />
+                    <path d="M8 12h8" />
+                    <path d="M10.5 9.5 8 12l2.5 2.5" />
+                  </svg>
+                </div>
+                <h3 className="font-playfair text-xl font-bold mb-2">Ethical Sourcing</h3>
+                <p>
+                  We are committed to responsible business practices. Our materials are ethically sourced, and we work closely with suppliers who share our values of integrity and sustainability.
+                </p>
               </div>
-              <h3 className="font-playfair text-xl font-bold mb-2">Ethical Sourcing</h3>
-              <p>
-                We are committed to responsible business practices. Our materials are ethically sourced, and we work closely with suppliers who share our values of integrity and sustainability.
-              </p>
             </div>
 
-            <div className="bg-card border border-border rounded-md p-6 text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-gold"
-                >
-                  <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
-                  <path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z" />
-                </svg>
+            <div className="bg-card border border-border rounded-md p-6 text-center relative overflow-hidden">
+              <img src="/images/Parshav_exports.png" alt="" className="absolute inset-0 m-auto w-44 h-44 object-contain opacity-[0.08] pointer-events-none dark:invert" />
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-gold"
+                  >
+                    <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
+                    <path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z" />
+                  </svg>
+                </div>
+                <h3 className="font-playfair text-xl font-bold mb-2">Customer Delight</h3>
+                <p>
+                  We strive to create not just beautiful jewelry, but exceptional experiences. From personalized service to thoughtful packaging, we aim to exceed your expectations at every touchpoint.
+                </p>
               </div>
-              <h3 className="font-playfair text-xl font-bold mb-2">Customer Delight</h3>
-              <p>
-                We strive to create not just beautiful jewelry, but exceptional experiences. From personalized service to thoughtful packaging, we aim to exceed your expectations at every touchpoint.
-              </p>
             </div>
           </div>
         </div>

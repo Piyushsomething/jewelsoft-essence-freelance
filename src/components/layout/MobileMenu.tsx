@@ -20,13 +20,13 @@ const MobileMenu = ({ isOpen, onClose, links }: MobileMenuProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-background z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-white dark:bg-neutral-950 z-[60] overflow-y-auto">
       <div className="container-custom py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center" onClick={onClose}>
           <img
             src="/images/Parshav_exports_Logo.png"
             alt="Parshav Exports"
-            className="h-14 w-auto object-contain"
+            className="h-14 w-auto object-contain dark:invert"
           />
         </Link>
         <Button
