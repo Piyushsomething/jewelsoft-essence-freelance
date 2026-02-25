@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,9 +16,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ProductCategory, ProductFilter as FilterType } from "@/types/product";
-import { formatPrice } from "@/utils/format";
-import { getProductCategories, getMaterials, getPriceRange } from "@/data/productData";
+import { ProductCategory, ProductFilter as FilterType, getCategoryDisplayName } from "@/types/product";
+import { getProductCategories, getMaterials } from "@/data/productData";
 import debounce from "lodash.debounce";
 
 interface ProductFilterProps {
@@ -33,11 +31,9 @@ const ProductFilter = ({
 }: ProductFilterProps) => {
   const categories = ["all", ...getProductCategories()];
   const materials = getMaterials();
-  const [minMaxPrice] = useState<[number, number]>(getPriceRange() as [number, number]);
-  
+
   const [filters, setFilters] = useState<FilterType>({
     category: initialFilters.category || "all",
-    priceRange: initialFilters.priceRange || minMaxPrice,
     materials: initialFilters.materials || [],
     onlyInStock: initialFilters.onlyInStock || false,
     sortBy: initialFilters.sortBy || "newest",
@@ -61,14 +57,13 @@ const ProductFilter = ({
   useEffect(() => {
     setFilters({
       category: initialFilters.category || "all",
-      priceRange: initialFilters.priceRange || minMaxPrice,
       materials: initialFilters.materials || [],
       onlyInStock: initialFilters.onlyInStock || false,
       sortBy: initialFilters.sortBy || "newest",
       searchQuery: initialFilters.searchQuery || "",
       categories: initialFilters.categories || [],
     });
-  }, [initialFilters, minMaxPrice]);
+  }, [initialFilters]);
 
   const submitFilterChanges = (newFilters: FilterType) => {
     setFilters(newFilters);
@@ -107,13 +102,6 @@ const ProductFilter = ({
     submitFilterChanges(newFilters);
   };
 
-  const handlePriceChange = (values: number[]) => {
-    if (values.length >= 2) {
-      const newFilters = { ...filters, priceRange: [values[0], values[1]] as [number, number] };
-      submitFilterChanges(newFilters);
-    }
-  };
-
   const handleMaterialToggle = (material: string, checked: boolean) => {
     const newFilters = { ...filters };
     const currentMaterials = [...(newFilters.materials || [])];
@@ -139,14 +127,13 @@ const ProductFilter = ({
   };
 
   const handleSortChange = (value: string) => {
-    const newFilters = { ...filters, sortBy: value as "newest" | "price-low-high" | "price-high-low" | "popular" };
+    const newFilters = { ...filters, sortBy: value as "newest" | "popular" };
     submitFilterChanges(newFilters);
   };
 
   const handleReset = () => {
-    const newFilters = {
+    const newFilters: FilterType = {
       category: "all",
-      priceRange: minMaxPrice,
       materials: [],
       onlyInStock: false,
       sortBy: "newest",
@@ -161,20 +148,7 @@ const ProductFilter = ({
     // Simply prevents form submission, the filter is already updated on input change
   };
 
-  // Category display names for better UX
-  const getCategoryDisplayName = (category: string) => {
-    switch (category) {
-      case "all": return "All Categories";
-      case "rings": return "Rings";
-      case "necklaces": return "Necklaces";
-      case "earrings": return "Earrings";
-      case "bracelets": return "Bracelets";
-      case "anklets": return "Anklets";
-      case "pendants": return "Pendants";
-      case "stones": return "Stones";
-      default: return category.charAt(0).toUpperCase() + category.slice(1);
-    }
-  };
+  // getCategoryDisplayName is imported from @/types/product
 
   return (
     <div className="md:h-auto md:overflow-visible flex flex-col h-[calc(100vh-4rem)]">
@@ -208,8 +182,6 @@ const ProductFilter = ({
               </SelectTrigger>
               <SelectContent position="popper" sideOffset={0}>
                 <SelectItem value="newest">Newest</SelectItem>
-                <SelectItem value="price-low-high">Price: Low to High</SelectItem>
-                <SelectItem value="price-high-low">Price: High to Low</SelectItem>
                 <SelectItem value="popular">Popularity</SelectItem>
               </SelectContent>
             </Select>
@@ -221,7 +193,7 @@ const ProductFilter = ({
       <div className="md:space-y-6 overflow-y-auto flex-1 pb-20">
         <div className="px-4 md:px-0 py-4">
           {/* Accordion Filters */}
-          <Accordion type="multiple" defaultValue={["category", "price", "material", "stock"]}>
+          <Accordion type="multiple" defaultValue={["category", "material", "stock"]}>
             {/* Categories */}
             <AccordionItem value="category">
               <AccordionTrigger className="font-playfair">Categories</AccordionTrigger>
@@ -232,11 +204,11 @@ const ProductFilter = ({
                       <Checkbox
                         id={`category-${category}`}
                         checked={
-                          category === "all" 
+                          category === "all"
                             ? (filters.categories || []).length === 0 || filters.category === "all"
                             : (filters.categories || []).includes(category as ProductCategory)
                         }
-                        onCheckedChange={(checked) => 
+                        onCheckedChange={(checked) =>
                           handleCategoryToggle(category, checked === true)
                         }
                       />
@@ -244,79 +216,10 @@ const ProductFilter = ({
                         htmlFor={`category-${category}`}
                         className="ml-2 text-sm cursor-pointer"
                       >
-                        {getCategoryDisplayName(category)}
+                        {category === 'all' ? 'All Categories' : getCategoryDisplayName(category)}
                       </label>
                     </div>
                   ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Price Range */}
-            <AccordionItem value="price">
-              <AccordionTrigger className="font-playfair">Price Range</AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-6">
-                  {/* Price display with input fields */}
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="w-full">
-                      <Label htmlFor="min-price" className="text-xs text-muted-foreground mb-1 block">Min</Label>
-                      <Input
-                        id="min-price"
-                        type="number"
-                        value={filters.priceRange?.[0] || minMaxPrice[0]}
-                        min={minMaxPrice[0]}
-                        max={filters.priceRange?.[1] || minMaxPrice[1]}
-                        onChange={(e) => {
-                          const value = Number(e.target.value);
-                          if (isNaN(value)) return;
-                          handlePriceChange([value, filters.priceRange?.[1] || minMaxPrice[1]]);
-                        }}
-                        className="h-8"
-                      />
-                    </div>
-                    <div className="flex items-center pt-6">
-                      <span className="text-muted-foreground">-</span>
-                    </div>
-                    <div className="w-full">
-                      <Label htmlFor="max-price" className="text-xs text-muted-foreground mb-1 block">Max</Label>
-                      <Input
-                        id="max-price"
-                        type="number"
-                        value={filters.priceRange?.[1] || minMaxPrice[1]}
-                        min={filters.priceRange?.[0] || minMaxPrice[0]}
-                        max={minMaxPrice[1]}
-                        onChange={(e) => {
-                          const value = Number(e.target.value);
-                          if (isNaN(value)) return;
-                          handlePriceChange([filters.priceRange?.[0] || minMaxPrice[0], value]);
-                        }}
-                        className="h-8"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Slider with improved styling */}
-                  <Slider
-                    defaultValue={[minMaxPrice[0], minMaxPrice[1]]}
-                    min={minMaxPrice[0]}
-                    max={minMaxPrice[1]}
-                    step={100}
-                    value={[
-                      filters.priceRange?.[0] || minMaxPrice[0],
-                      filters.priceRange?.[1] || minMaxPrice[1],
-                    ]}
-                    onValueChange={handlePriceChange}
-                    className="mt-6"
-                    thumbClassName="w-5 h-5 bg-gold border-2 border-white"
-                    aria-label="Price range"
-                  />
-                  
-                  {/* Price range indicators */}
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>{formatPrice(minMaxPrice[0])}</span>
-                    <span>{formatPrice(minMaxPrice[1])}</span>
-                  </div>
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -331,7 +234,7 @@ const ProductFilter = ({
                       <Checkbox
                         id={`material-${material}`}
                         checked={(filters.materials || []).includes(material)}
-                        onCheckedChange={(checked) => 
+                        onCheckedChange={(checked) =>
                           handleMaterialToggle(material, checked === true)
                         }
                       />

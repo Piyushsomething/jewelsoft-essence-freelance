@@ -3,9 +3,20 @@ import { getNewProducts } from "@/data/productData";
 import ProductGrid from "@/components/products/ProductGrid";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchNewProducts } from "@/lib/productService";
 
 const NewArrivals = () => {
-  const newProducts = getNewProducts();
+  const { data: supabaseNew } = useQuery({
+    queryKey: ['products', 'new'],
+    queryFn: fetchNewProducts,
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
+  });
+
+  const newProducts = supabaseNew && supabaseNew.length > 0
+    ? supabaseNew
+    : getNewProducts();
 
   return (
     <section className="py-16 md:py-24 bg-light dark:bg-dark">

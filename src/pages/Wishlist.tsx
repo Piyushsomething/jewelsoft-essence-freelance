@@ -3,18 +3,17 @@ import { Link } from "react-router-dom";
 import { Heart, ShoppingCart, X } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/utils/format";
 import { useWishlist } from "@/contexts/WishlistContext";
 import { useCart } from "@/contexts/CartContext";
 
 const Wishlist = () => {
   const { items, removeFromWishlist, clearWishlist } = useWishlist();
   const { addToCart } = useCart();
-  
+
   const handleRemoveItem = (productId: string) => {
     removeFromWishlist(productId);
   };
-  
+
   const handleAddToCart = (productId: string) => {
     const product = items.find(item => item.id === productId);
     if (product) {
@@ -22,7 +21,7 @@ const Wishlist = () => {
       removeFromWishlist(productId);
     }
   };
-  
+
   if (items.length === 0) {
     return (
       <Layout>
@@ -41,7 +40,7 @@ const Wishlist = () => {
       </Layout>
     );
   }
-  
+
   return (
     <Layout>
       <div className="container-custom py-12">
@@ -54,11 +53,11 @@ const Wishlist = () => {
             Clear Wishlist
           </Button>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {items.map(product => (
-            <div 
-              key={product.id} 
+            <div
+              key={product.id}
               className="border border-border rounded-md overflow-hidden group relative"
             >
               {/* Remove Button */}
@@ -69,7 +68,7 @@ const Wishlist = () => {
               >
                 <X className="h-4 w-4" />
               </button>
-              
+
               {/* Product Image */}
               <Link to={`/product/${product.id}`} className="block">
                 <div className="aspect-square bg-muted relative overflow-hidden">
@@ -80,25 +79,21 @@ const Wishlist = () => {
                   />
                 </div>
               </Link>
-              
+
               {/* Product Info */}
               <div className="p-4">
-                <Link 
+                <Link
                   to={`/product/${product.id}`}
                   className="block font-medium hover:text-gold transition-colors mb-1"
                 >
                   {product.name}
                 </Link>
-                
+
                 <div className="text-sm text-muted-foreground mb-3 capitalize">
                   {product.category}
                 </div>
-                
+
                 <div className="flex justify-between items-center mb-4">
-                  <div className="font-semibold">
-                    {formatPrice(product.price)}
-                  </div>
-                  
                   {product.rating && (
                     <div className="flex items-center">
                       <span className="text-gold">★</span>
@@ -106,7 +101,7 @@ const Wishlist = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <Button
                   className="w-full bg-gold text-darkText hover:bg-gold/90"
                   onClick={() => handleAddToCart(product.id)}

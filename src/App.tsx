@@ -28,6 +28,7 @@ import ShippingReturns from "./pages/ShippingReturns";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Checkout from "./pages/Checkout";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -41,7 +42,7 @@ const App = () => (
               <Toaster />
               <Sonner />
               <BrowserRouter>
-              <LoadingBar/>
+                <LoadingBar />
                 <ScrollToTop />
                 <Routes>
                   <Route path="/" element={<Index />} />
@@ -58,6 +59,7 @@ const App = () => (
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/checkout/success" element={<CheckoutSuccess />} />
+                  <Route path="/admin" element={<Admin />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
