@@ -9,7 +9,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/contexts/CartContext";
-import { formatPrice } from "@/utils/format";
 import { CreditCard, Truck, ShieldCheck } from "lucide-react";
 import CheckoutSummary from "@/components/checkout/CheckoutSummary";
 import CheckoutPayment from "@/components/checkout/CheckoutPayment";
@@ -17,10 +16,10 @@ import CheckoutPayment from "@/components/checkout/CheckoutPayment";
 const Checkout = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, clearCart } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal">("card");
-  
+
   const [shippingDetails, setShippingDetails] = useState({
     firstName: "",
     lastName: "",
@@ -32,7 +31,7 @@ const Checkout = () => {
     postalCode: "",
     country: "US"
   });
-  
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setShippingDetails(prev => ({
@@ -40,10 +39,10 @@ const Checkout = () => {
       [name]: value
     }));
   };
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (items.length === 0) {
       toast({
         title: "Your cart is empty",
@@ -52,42 +51,40 @@ const Checkout = () => {
       });
       return;
     }
-    
+
     setIsProcessing(true);
-    
+
     try {
       // Create a simpler order summary for WhatsApp
-      const orderSummary = items.map(item => 
-        `- ${item.product.name} (${item.quantity} × ${formatPrice(item.product.price)})`
+      const orderSummary = items.map(item =>
+        `- ${item.product.name} (Qty: ${item.quantity})`
       ).join('\n');
-      
+
       const customerInfo = `Name: ${shippingDetails.firstName} ${shippingDetails.lastName}\nEmail: ${shippingDetails.email}\nPhone: ${shippingDetails.phone}`;
-      
-      const totalAmount = `Total: ${formatPrice(totalPrice)}`;
-      
-      const whatsappMessage = `Order from Parshav Exports\n\n${customerInfo}\n\n${orderSummary}\n\n${totalAmount}`;
-      
+
+      const whatsappMessage = `Order Inquiry from Parshav Exports\n\n${customerInfo}\n\nProducts:\n${orderSummary}\n\nPlease share pricing details.`;
+
       // Simply use encodeURIComponent without replacing %0A
       const encodedMessage = encodeURIComponent(whatsappMessage);
-      
+
       // Use wa.me format which handles line breaks better
       const whatsappURL = `https://wa.me/919660622062?text=${encodedMessage}`;
-      
+
       // Set order completed in session storage for the success page
       sessionStorage.setItem('orderCompleted', 'true');
-      
+
       // Wait a moment then redirect to WhatsApp
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // Open WhatsApp in new tab
       window.open(whatsappURL, '_blank');
-      
+
       // Navigate to success page
       navigate("/checkout/success");
-      
+
       // Clear cart
       clearCart();
-      
+
     } catch (error) {
       toast({
         title: "Checkout failed",
@@ -98,8 +95,8 @@ const Checkout = () => {
       setIsProcessing(false);
     }
   };
-  
-  const isDisabled = 
+
+  const isDisabled =
     !shippingDetails.firstName ||
     !shippingDetails.lastName ||
     !shippingDetails.email ||
@@ -107,7 +104,7 @@ const Checkout = () => {
     !shippingDetails.city ||
     !shippingDetails.postalCode ||
     isProcessing;
-  
+
   if (items.length === 0) {
     return (
       <Layout>
@@ -121,12 +118,12 @@ const Checkout = () => {
       </Layout>
     );
   }
-  
+
   return (
     <Layout>
       <div className="container-custom py-12">
         <h1 className="font-playfair text-3xl font-bold mb-8 text-center md:text-left">Checkout</h1>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Column - Form */}
           <div className="md:col-span-2">
@@ -140,9 +137,9 @@ const Checkout = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name *</Label>
-                      <Input 
-                        id="firstName" 
-                        name="firstName" 
+                      <Input
+                        id="firstName"
+                        name="firstName"
                         value={shippingDetails.firstName}
                         onChange={handleInputChange}
                         required
@@ -150,23 +147,23 @@ const Checkout = () => {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Last Name *</Label>
-                      <Input 
-                        id="lastName" 
-                        name="lastName" 
+                      <Input
+                        id="lastName"
+                        name="lastName"
                         value={shippingDetails.lastName}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="email">Email *</Label>
-                      <Input 
-                        id="email" 
-                        name="email" 
-                        type="email" 
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
                         value={shippingDetails.email}
                         onChange={handleInputChange}
                         required
@@ -174,33 +171,33 @@ const Checkout = () => {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone</Label>
-                      <Input 
-                        id="phone" 
-                        name="phone" 
-                        type="tel" 
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
                         value={shippingDetails.phone}
                         onChange={handleInputChange}
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="address">Address *</Label>
-                    <Input 
-                      id="address" 
-                      name="address" 
+                    <Input
+                      id="address"
+                      name="address"
                       value={shippingDetails.address}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
-                  
+
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="city">City *</Label>
-                      <Input 
-                        id="city" 
-                        name="city" 
+                      <Input
+                        id="city"
+                        name="city"
                         value={shippingDetails.city}
                         onChange={handleInputChange}
                         required
@@ -208,22 +205,22 @@ const Checkout = () => {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="state">State/Province *</Label>
-                      <Input 
-                        id="state" 
-                        name="state" 
+                      <Input
+                        id="state"
+                        name="state"
                         value={shippingDetails.state}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="postalCode">Postal Code *</Label>
-                      <Input 
-                        id="postalCode" 
-                        name="postalCode" 
+                      <Input
+                        id="postalCode"
+                        name="postalCode"
                         value={shippingDetails.postalCode}
                         onChange={handleInputChange}
                         required
@@ -249,22 +246,22 @@ const Checkout = () => {
                   </div>
                 </CardContent>
               </Card>
-              
-              <Button 
-                      type="submit" 
-                      className="w-full" 
-                      disabled={isDisabled}
-                      isLoading={isProcessing}
-                    >
-                      {isProcessing ? "Processing..." : `Pay ${formatPrice(totalPrice)}`}
-                    </Button>
+
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={isDisabled}
+                isLoading={isProcessing}
+              >
+                {isProcessing ? "Processing..." : "Submit Inquiry"}
+              </Button>
             </form>
           </div>
-          
+
           {/* Right Column - Summary */}
           <div>
             <CheckoutSummary />
-            
+
             <div className="mt-6 space-y-4">
               <div className="border rounded-lg p-4 bg-muted/30">
                 <div className="flex items-start gap-3">
@@ -275,7 +272,7 @@ const Checkout = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="border rounded-lg p-4 bg-muted/30">
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />

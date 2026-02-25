@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { PageTransition } from "@/components/ui/page-transition";
 import { ScrollToTopButton } from "./ScrollToTopButton";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
         <PageTransition>{children}</PageTransition>
       </main>
       <Footer />
+      <WhatsAppButton />
       <ScrollToTopButton />
     </>
   );

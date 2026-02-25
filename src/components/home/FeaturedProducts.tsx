@@ -3,9 +3,21 @@ import ProductGrid from "@/components/products/ProductGrid";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { useQuery } from "@tanstack/react-query";
+import { fetchFeaturedProducts } from "@/lib/productService";
 
 const FeaturedProducts = () => {
-  const featuredProducts = getFeaturedProducts();
+  const { data: supabaseFeatured } = useQuery({
+    queryKey: ['products', 'featured'],
+    queryFn: fetchFeaturedProducts,
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
+  });
+
+  // Use Supabase data if available, otherwise fall back to local
+  const featuredProducts = supabaseFeatured && supabaseFeatured.length > 0
+    ? supabaseFeatured
+    : getFeaturedProducts();
 
   return (
     <section className="py-16 bg-light dark:bg-dark">

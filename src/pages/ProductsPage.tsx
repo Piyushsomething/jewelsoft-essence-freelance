@@ -8,6 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import { Filter, X, SlidersHorizontal } from "lucide-react";
 import { ProductFilter as FilterType, ProductCategory } from "@/types/product";
 import { getFilteredProducts } from "@/data/productData";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAllProducts } from "@/lib/productService";
+import { products as localProducts } from "@/data/productItems";
 import {
   Sheet,
   SheetContent,
@@ -18,38 +21,36 @@ import {
 
 const updateUrlWithFilters = (filters: FilterType) => {
   const params = new URLSearchParams();
-  
+
   // Only add parameters that have values
   if (filters.category && filters.category !== 'all') {
     params.set('category', filters.category);
   }
-  
+
   if (filters.categories && filters.categories.length > 0) {
     params.set('categories', filters.categories.join(','));
   }
-  
+
   if (filters.searchQuery) {
     params.set('search', filters.searchQuery);
   }
-  
-  if (filters.priceRange) {
-    params.set('priceRange', `${filters.priceRange[0]}-${filters.priceRange[1]}`);
-  }
-  
+
+
+
   if (filters.materials && filters.materials.length > 0) {
     params.set('materials', filters.materials.join(','));
   }
-  
+
   if (filters.onlyInStock) {
     params.set('inStock', 'true');
   }
-  
+
   if (filters.sortBy && filters.sortBy !== "newest") {
     params.set('sortBy', filters.sortBy);
   }
-  
+
   // Replace current URL without reloading the page
-  window.history.replaceState({}, '', 
+  window.history.replaceState({}, '',
     params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname
   );
 };
@@ -64,44 +65,41 @@ const ProductsPage = () => {
   const initialCategories = searchParams.get("categories")?.split(',') as ProductCategory[] || [];
   const initialMaterials = searchParams.get("materials")?.split(',') || [];
   const initialOnlyInStock = searchParams.get("inStock") === "true";
-  const initialSortBy = searchParams.get("sortBy") as "newest" | "price-low-high" | "price-high-low" | "popular" || "newest";
-
-  // Parse price range if present
-  let initialPriceRange: [number, number] | undefined = undefined;
-  if (searchParams.get("priceRange")) {
-    const [min, max] = searchParams.get("priceRange")!.split('-');
-    initialPriceRange = [parseInt(min), parseInt(max)];
-  }
+  const initialSortBy = searchParams.get("sortBy") as "newest" | "popular" || "newest";
 
   const [activeFilters, setActiveFilters] = useState<FilterType>({
     category: initialCategory as ProductCategory | "all",
     searchQuery: initialSearch,
-    categories: initialCategories.length > 0 ? initialCategories : 
-                (initialCategory !== "all" ? [initialCategory as ProductCategory] : []),
+    categories: initialCategories.length > 0 ? initialCategories :
+      (initialCategory !== "all" ? [initialCategory as ProductCategory] : []),
     materials: initialMaterials,
     onlyInStock: initialOnlyInStock,
     sortBy: initialSortBy,
-    priceRange: initialPriceRange,
   });
 
-  const [isLoading, setIsLoading] = useState(true);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
-  
-  const [products, setProducts] = useState(getFilteredProducts(activeFilters));
-  
+
+  // Fetch products from Supabase, fall back to local data
+  const { data: allProducts = localProducts, isLoading: isFetchLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchAllProducts,
+    staleTime: 1000 * 60 * 5, // 5 min cache
+    retry: 1,
+  });
+
+  const [products, setProducts] = useState(getFilteredProducts(activeFilters, allProducts));
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    // Use a stable dependency rather than stringifying the entire object
     setIsLoading(true);
-    
     const timeoutId = setTimeout(() => {
-      const filtered = getFilteredProducts(activeFilters);
+      const filtered = getFilteredProducts(activeFilters, allProducts);
       setProducts(filtered);
       setIsLoading(false);
-    }, 500);
-    
+    }, 300);
     return () => clearTimeout(timeoutId);
-  }, [activeFilters]); // Use the object directly, React will do shallow comparison
-  
+  }, [activeFilters, allProducts]);
+
   const handleFilterChange = (filters: FilterType) => {
     // Update URL first
     updateUrlWithFilters(filters);
@@ -111,7 +109,7 @@ const ProductsPage = () => {
 
   const handleRemoveFilter = (filterKey: keyof FilterType, value?: string) => {
     const newFilters = { ...activeFilters };
-    
+
     if (filterKey === "materials" && value) {
       newFilters.materials = (activeFilters.materials || []).filter(m => m !== value);
       if (newFilters.materials.length === 0) {
@@ -125,8 +123,6 @@ const ProductsPage = () => {
       } else if (newFilters.categories.length === 1) {
         newFilters.category = newFilters.categories[0];
       }
-    } else if (filterKey === "priceRange") {
-      delete newFilters.priceRange;
     } else if (filterKey === "onlyInStock") {
       newFilters.onlyInStock = false;
     } else if (filterKey === "category") {
@@ -135,15 +131,15 @@ const ProductsPage = () => {
     } else if (filterKey === "searchQuery") {
       newFilters.searchQuery = "";
     }
-    
+
     // Update URL first, then state
     updateUrlWithFilters(newFilters);
     setActiveFilters(newFilters);
   };
-  
+
   const getActiveFilterLabels = () => {
     const labels = [];
-    
+
     if (activeFilters.categories && activeFilters.categories.length > 0) {
       activeFilters.categories.forEach(cat => {
         labels.push({
@@ -159,14 +155,9 @@ const ProductsPage = () => {
         label: `Category: ${activeFilters.category}`,
       });
     }
-    
-    if (activeFilters.priceRange) {
-      labels.push({
-        key: "priceRange" as keyof FilterType,
-        label: `Price Range: ₹${activeFilters.priceRange[0]} - ₹${activeFilters.priceRange[1]}`,
-      });
-    }
-    
+
+
+
     if (activeFilters.materials && activeFilters.materials.length > 0) {
       activeFilters.materials.forEach(material => {
         labels.push({
@@ -176,24 +167,24 @@ const ProductsPage = () => {
         });
       });
     }
-    
+
     if (activeFilters.onlyInStock) {
       labels.push({
         key: "onlyInStock" as keyof FilterType,
         label: "In Stock Only",
       });
     }
-    
+
     if (activeFilters.searchQuery) {
       labels.push({
         key: "searchQuery" as keyof FilterType,
         label: `Search: "${activeFilters.searchQuery}"`,
       });
     }
-    
+
     return labels;
   };
-  
+
   return (
     <Layout>
       <div className="container-custom py-12">
@@ -202,14 +193,14 @@ const ProductsPage = () => {
           <div className="hidden md:block w-64 flex-shrink-0 sticky top-24">
             <div className="space-y-6">
               <h1 className="font-playfair text-2xl font-bold">Products</h1>
-              <ProductFilter 
+              <ProductFilter
                 key={`filter-${activeFilters.category || 'all'}`}
-                onFilterChange={handleFilterChange} 
+                onFilterChange={handleFilterChange}
                 initialFilters={activeFilters}
               />
             </div>
           </div>
-          
+
           {/* Main Content */}
           <div className="flex-1">
             {/* Mobile Header */}
@@ -228,43 +219,41 @@ const ProductsPage = () => {
                       <SheetTitle>Filters</SheetTitle>
                     </SheetHeader>
                     <div className="mt-6">
-                      <ProductFilter 
+                      <ProductFilter
                         key={`filter-${activeFilters.category || 'all'}`}
-                        onFilterChange={handleFilterChange} 
-                        initialFilters={activeFilters} 
+                        onFilterChange={handleFilterChange}
+                        initialFilters={activeFilters}
                       />
                     </div>
                   </SheetContent>
                 </Sheet>
               </div>
             </div>
-            
+
             {/* Products Info */}
             <div className="flex flex-wrap items-center justify-between mb-6">
               <p className="text-muted-foreground">
                 Showing {products.length} product{products.length !== 1 ? "s" : ""}
               </p>
-              
+
               {/* Sort Dropdown (Desktop) */}
               <div className="hidden md:block">
                 <select
                   className="bg-background border border-border rounded px-3 py-1.5 text-sm"
                   value={activeFilters.sortBy || "newest"}
                   onChange={(e) => {
-                    const sortValue = e.target.value as "newest" | "price-low-high" | "price-high-low" | "popular";
+                    const sortValue = e.target.value as "newest" | "popular";
                     const updatedFilters = { ...activeFilters, sortBy: sortValue };
                     setActiveFilters(updatedFilters);
                     updateUrlWithFilters(updatedFilters);
                   }}
                 >
                   <option value="newest">Sort by: Newest</option>
-                  <option value="price-low-high">Sort by: Price Low to High</option>
-                  <option value="price-high-low">Sort by: Price High to Low</option>
                   <option value="popular">Sort by: Popularity</option>
                 </select>
               </div>
             </div>
-            
+
             {/* Active Filters */}
             <div className="mb-6">
               <div className="flex flex-wrap gap-2">
@@ -288,34 +277,34 @@ const ProductsPage = () => {
                     </button>
                   </Badge>
                 ))}
-                
+
                 {getActiveFilterLabels().length > 0 && (
                   <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    const newFilters: FilterType = { 
-                      category: "all", 
-                      categories: [],
-                      searchQuery: "",
-                      materials: [],
-                      onlyInStock: false,
-                      sortBy: "newest",
-                      // Don't include priceRange to reset it to default
-                    };
-                    
-                    // First update URL then state to avoid multiple renders
-                    updateUrlWithFilters(newFilters);
-                    setActiveFilters(newFilters);
-                  }}
-                  className="text-sm"
-                >
-                  Clear All
-                </Button>
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      const newFilters: FilterType = {
+                        category: "all",
+                        categories: [],
+                        searchQuery: "",
+                        materials: [],
+                        onlyInStock: false,
+                        sortBy: "newest",
+
+                      };
+
+                      // First update URL then state to avoid multiple renders
+                      updateUrlWithFilters(newFilters);
+                      setActiveFilters(newFilters);
+                    }}
+                    className="text-sm"
+                  >
+                    Clear All
+                  </Button>
                 )}
               </div>
             </div>
-            
+
             {/* Products Grid */}
             <ProductGrid
               products={products}
