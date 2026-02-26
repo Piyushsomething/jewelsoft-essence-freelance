@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +11,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import { WishlistProvider } from "@/contexts/WishlistContext";
 import { Analytics } from '@vercel/analytics/react';
 import { LoadingBar } from "@/components/ui/loading-bar";
+import SplashLoader from "@/components/ui/SplashLoader";
 
 // Pages
 import Index from "./pages/Index";
@@ -32,44 +33,57 @@ import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <AuthProvider>
-        <CartProvider>
-          <WishlistProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <BrowserRouter>
-                <LoadingBar />
-                <ScrollToTop />
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/products" element={<ProductsPage />} />
-                  <Route path="/product/:id" element={<ProductDetail />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/wishlist" element={<Wishlist />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/account" element={<Account />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/terms-conditions" element={<TermsConditions />} />
-                  <Route path="/shipping-returns" element={<ShippingReturns />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/checkout/success" element={<CheckoutSuccess />} />
-                  <Route path="/admin" element={<Admin />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
-              <Analytics />
-            </TooltipProvider>
-          </WishlistProvider>
-        </CartProvider>
-      </AuthProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [splashDone, setSplashDone] = useState(false);
+
+  const handleSplashComplete = useCallback(() => {
+    setSplashDone(true);
+    // Also remove the inline HTML pre-splash
+    if (typeof window !== 'undefined' && (window as any).__removePreSplash) {
+      (window as any).__removePreSplash();
+    }
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <AuthProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <TooltipProvider>
+                {!splashDone && <SplashLoader onComplete={handleSplashComplete} />}
+                <Toaster />
+                <Sonner />
+                <BrowserRouter>
+                  <LoadingBar />
+                  <ScrollToTop />
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/account" element={<Account />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/terms-conditions" element={<TermsConditions />} />
+                    <Route path="/shipping-returns" element={<ShippingReturns />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/checkout/success" element={<CheckoutSuccess />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+                <Analytics />
+              </TooltipProvider>
+            </WishlistProvider>
+          </CartProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
