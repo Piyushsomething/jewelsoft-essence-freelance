@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { supabase } from './lib/supabase';
+import { getSupabase } from './lib/supabase';
 
 // Database row type (snake_case from Supabase)
 interface ProductRow {
@@ -70,6 +70,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
+        const supabase = getSupabase();
         // ─── GET: Read operations ───
         if (req.method === 'GET') {
             const action = req.query.action as string;
