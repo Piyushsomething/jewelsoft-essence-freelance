@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getSupabase } from './lib/supabase';
+import { supabase } from './lib/supabase';
 
 export const config = {
     api: {
@@ -20,7 +20,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
-        const supabase = getSupabase();
         // ─── GET: Get public URL for an image ───
         if (req.method === 'GET') {
             const path = req.query.path as string;
