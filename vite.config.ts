@@ -8,6 +8,13 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      // Forward /api calls to Vercel dev server (run `npx vercel dev --listen 3001` separately)
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     react(),
@@ -20,3 +27,4 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+
