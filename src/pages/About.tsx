@@ -67,7 +67,25 @@ const About = () => {
           </p>
         </div>
 
-
+        {/* Founder Image - Bottom Right Corner of Hero */}
+        <div className="absolute bottom-16 right-6 z-20 hidden md:block">
+          <div className="relative group">
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-md overflow-hidden border-4 border-gold shadow-xl transition-transform duration-300 group-hover:scale-150 origin-bottom-right">
+              <img
+                src="/images/founder/founder.jpeg"
+                alt="Sanjay Jain - Founder"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Text Description Below Image */}
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2">
+              <div className="bg-white/90 backdrop-blur-sm text-dark text-xs px-3 py-1 rounded-md shadow-lg whitespace-nowrap">
+                <p className="font-medium">Founder</p>
+                <p className="text-xs opacity-80">Sanjay Jain</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Our Journey with Workshop Carousel */}
@@ -142,103 +160,6 @@ const About = () => {
 
               {/* Decorative Element */}
               <div className="absolute -bottom-6 -left-6 h-24 w-24 bg-gold rounded-full hidden md:block opacity-20" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ Founder's Message ═══ */}
-      <section className="py-00 md:py-28 relative overflow-hidden">
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-
-        {/* Watermark logo */}
-        <img
-          src="/images/Parshav_exports.png"
-          alt=""
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] object-contain opacity-[0.05] dark:opacity-[0.05] dark:invert pointer-events-none"
-        />
-
-        <div className="container-custom relative z-10">
-          {/* Section header */}
-          <div className="text-center mb-14">
-            <span className="inline-block text-gold font-medium tracking-[0.3em] uppercase text-xs mb-3">
-              A Word From Our Founder
-            </span>
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
-              Founder's Message
-            </h2>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-12 h-[1px] bg-gold/40" />
-              <div className="w-2 h-2 rotate-45 border border-gold/60" />
-              <div className="w-12 h-[1px] bg-gold/40" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
-            {/* Founder image */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="relative">
-                {/* Decorative frame corners */}
-                <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-gold/60" />
-                <div className="absolute -top-3 -right-3 w-10 h-10 border-t-2 border-r-2 border-gold/60" />
-                <div className="absolute -bottom-3 -left-3 w-10 h-10 border-b-2 border-l-2 border-gold/60" />
-                <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-gold/60" />
-
-                {/* Gold accent dot */}
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-gold rounded-full opacity-60 z-10" />
-
-                {/* Image container */}
-                <div className="w-64 h-80 md:w-72 md:h-96 rounded-md overflow-hidden shadow-2xl border border-border">
-                  <img
-                    src="/images/founder/Founder.avif"
-                    alt="Sanjay Jain - Founder"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Name plate below image */}
-                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-card border border-border shadow-lg px-6 py-2.5 rounded-md text-center whitespace-nowrap z-10">
-                  <p className="font-playfair text-lg font-bold text-gold">Sanjay Jain</p>
-                  <p className="text-xs text-muted-foreground tracking-wider uppercase">Founder & CEO</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Message content */}
-            <div className="lg:col-span-8 pt-6 lg:pt-0">
-              {/* Large decorative quote mark */}
-              <div className="mb-4">
-                <svg className="w-14 h-14 text-gold/20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.68 11.003 13.174 11.003 15c0 1.933-1.567 3.5-3.5 3.5-1.202 0-2.322-.603-2.92-1.179zM14.583 17.321C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.986.169 3.398 1.663 3.398 3.489 0 1.933-1.567 3.5-3.5 3.5-1.202 0-2.322-.603-2.92-1.179z" />
-                </svg>
-              </div>
-
-              {/* Message paragraphs */}
-              <div className="space-y-5">
-                <p className="text-lg md:text-xl leading-relaxed font-playfair italic text-foreground/90">
-                  Parshav Export was founded with a simple vision: to deliver quality products with integrity, reliability, and global standards. We believe that strong partnerships are built on trust, consistency, and transparent communication.
-                </p>
-                <p className="text-base md:text-lg leading-relaxed text-foreground/75">
-                  Every shipment we deliver reflects our commitment to excellence and long-term relationships. Our focus is not just on exporting products, but on building dependable connections across borders.
-                </p>
-                <p className="text-base md:text-lg leading-relaxed text-foreground/75">
-                  Thank you for trusting Parshav Export. We look forward to growing together.
-                </p>
-              </div>
-
-              {/* Signature area */}
-              <div className="mt-8 pt-6 border-t border-border/50">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-[2px] bg-gradient-to-r from-gold to-transparent" />
-                  <div>
-                    <p className="font-playfair text-xl font-bold text-gold">Sanjay Jain</p>
-                    <p className="text-sm text-muted-foreground tracking-wider uppercase">Founder & CEO, Parshav Exports</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

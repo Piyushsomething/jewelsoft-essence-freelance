@@ -8,6 +8,7 @@ import NewArrivals from "@/components/home/NewArrivals";
 import Newsletter from "@/components/home/Newsletter";
 import AnimatedShowcase from "@/components/home/AnimatedShowcase";
 import AnimatedBackground from "@/components/home/AnimatedBackground";
+import CatalogueDownload from "@/components/home/CatalogueDownload";
 import AnimatedLogoBg from "@/components/layout/AnimatedLogoBg";
 import { motion } from "framer-motion";
 
@@ -63,6 +64,7 @@ const Index = () => {
         </motion.div>
 
       </div>
+      <CatalogueDownload />
       <NewArrivals />
       {/* <Testimonials /> */}
       <Newsletter />
