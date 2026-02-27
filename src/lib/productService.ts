@@ -148,12 +148,6 @@ export async function deleteProductImage(imageUrl: string): Promise<void> {
 }
 
 export function getImagePublicUrl(path: string): string {
-    // For public URLs, we can construct them directly since Supabase storage URLs are public
-    // This avoids needing an API call for a simple URL construction
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    if (supabaseUrl) {
-        return `${supabaseUrl}/storage/v1/object/public/product-images/${path}`;
-    }
-    // Fallback: call the API
+    // Resolve image URLs via server-side API to avoid exposing Supabase credentials
     return `${API_BASE}/images?path=${encodeURIComponent(path)}`;
 }
